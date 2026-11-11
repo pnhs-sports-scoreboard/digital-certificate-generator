@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Certificate Generator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 15px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #244b3c;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin: 8px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #246b50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      margin: 5px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .certificate {
+      background: #fffdf2;
+      border: 8px double #b28b37;
+      padding: 20px 10px;
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .certificate h2 {
+      color: #a47a25;
+    }
+
+    #recipient {
+      font-family: Georgia, serif;
+      font-size: 27px;
+      overflow-wrap: anywhere;
+    }
+
+    @media print {
+      @page {
+        size: landscape;
+        margin: 10mm;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #certificate, #certificate * {
+        visibility: visible;
+      }
+
+      #certificate {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Digital Certificate Generator</h1>
+
+  <div class="container">
+
+    <h3>Enter Certificate Information</h3>
+
+    <label>Recipient's Name</label>
+    <input id="name" placeholder="Enter full name">
+
+    <label>Award Title</label>
+    <input id="award" placeholder="Certificate of Achievement">
+
+    <label>Description</label>
+    <textarea id="description"
+      placeholder="For outstanding performance..."></textarea>
+
+    <label>Date</label>
+    <input id="date" type="date">
+
+    <label>School or Organization</label>
+    <input id="school" placeholder="Enter school name">
+
+    <button onclick="generateCertificate()">
+      Generate Certificate
+    </button>
+
+    <div class="certificate" id="certificate">
+
+      <h2 id="displayAward">
+        CERTIFICATE OF ACHIEVEMENT
+      </h2>
+
+      <p>This certificate is proudly presented to</p>
+
+      <h2 id="recipient">Recipient Name</h2>
+
+      <p id="displayDescription">
+        For outstanding performance and dedication.
+      </p>
+
+      <p id="displaySchool">
+        School or Organization
+      </p>
+
+      <p>Date: <span id="displayDate">__________</span></p>
+
+      <br>
+      <p>________________________</p>
+      <p>Authorized Signature</p>
+
+    </div>
+
+    <button onclick="window.print()">
+      Print / Save as PDF
+    </button>
+
+  </div>
+
+  <script>
+    function generateCertificate() {
+
+      const name = document.getElementById("name").value.trim();
+      const award = document.getElementById("award").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const date = document.getElementById("date").value;
+      const school = document.getElementById("school").value.trim();
+
+      if (!name || !award || !description || !date || !school) {
+        alert("Please complete all the fields!");
+        return;
+      }
+
+      document.getElementById("recipient").textContent = name;
+      document.getElementById("displayAward").textContent = award;
+      document.getElementById("displayDescription").textContent = description;
+      document.getElementById("displayDate").textContent = date;
+      document.getElementById("displaySchool").textContent = school;
+    }
+  </script>
+
+</body>
+</html>
