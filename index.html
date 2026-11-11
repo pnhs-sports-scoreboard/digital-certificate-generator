@@ -3,73 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elite Certificate Designer</title>
+<title>Graduation Certificate Designer</title>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f2f3f7;color:#253047}
-header{background:#142c50;color:white;text-align:center;padding:35px 15px}
-header h1{font-family:Georgia,serif;margin:0 0 10px}
-header p{color:#dce4ef}
-main{max-width:1150px;margin:auto;padding:18px}
-.panel{background:white;padding:22px;border-radius:12px;margin-bottom:20px;box-shadow:0 3px 12px #0001}
-h2{font-family:Georgia,serif;color:#19375f}
-label{display:block;font-weight:bold;margin-top:14px}
-input,textarea{width:100%;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:7px;font-size:15px}
-textarea{min-height:80px}
-button{background:#244a7d;color:white;border:0;padding:11px 16px;border-radius:7px;cursor:pointer;font-weight:bold}
-button:hover{background:#142d50}
-.filters{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:13px}
-.design-card{border:2px solid #ddd;border-radius:9px;padding:8px;background:white;cursor:pointer;text-align:center}
-.design-card.selected{border:3px solid #27804c;background:#f0fff5}
-.mini{height:105px;padding:7px;background:var(--paper);border:8px var(--style) var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;position:relative}
-.mini-inner{height:100%;width:100%;border:1px solid var(--gold);display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:Georgia,serif}
-.mini-inner b{font-size:10px}
-.mini-inner span{font-size:8px;margin-top:5px}
-.mini:before{content:var(--orn);position:absolute;top:1px;left:4px;color:var(--gold)}
-.design-card p{font-size:12px;font-weight:bold;margin:8px 0}
-.design-card small{font-size:10px;color:#666}
-.design-card button{width:100%;margin-top:8px;padding:8px;font-size:11px}
-#selectedName{color:#27804c;font-weight:bold}
-.preview-scroll{overflow-x:auto}
-#certificate{
- width:850px;height:570px;margin:15px auto;padding:24px;
- background:var(--paper);border:12px var(--style) var(--gold);
- color:var(--ink);position:relative;text-align:center;
+body{margin:0;font-family:Georgia,serif;background:#f3f1ed;color:#242424}
+header{background:#101b35;color:white;padding:28px 6%;text-align:center}
+header h1{margin:0;font-size:30px;letter-spacing:2px}
+header p{color:#d7c38c;font-family:Arial,sans-serif}
+main{max-width:1400px;margin:auto;padding:25px 4%}
+h2{font-family:Arial,sans-serif;color:#182747}
+.section{background:white;padding:22px;border-radius:12px;margin-bottom:25px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.design-card{background:#fff;border:2px solid #e5e2dc;border-radius:9px;padding:9px;cursor:pointer;text-align:center;transition:.2s}
+.design-card:hover{transform:translateY(-3px);border-color:#b18b37}
+.design-card.selected{border:3px solid #b18b37;background:#fffaf0}
+.thumb{width:100%;aspect-ratio:1.414;position:relative;overflow:hidden;background:#fff}
+.thumb svg{width:100%;height:100%;display:block}
+.design-card h3{font: bold 14px Arial;margin:9px 0 3px}
+.design-card small{font:11px Arial;color:#777}
+.editor{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+label{display:block;font:13px Arial;font-weight:bold;margin-bottom:6px;color:#333}
+input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:6px;font-size:14px}
+.field{margin-bottom:14px}
+button{padding:12px 18px;border:0;border-radius:6px;background:#172746;color:white;cursor:pointer;font-weight:bold}
+button:hover{background:#b18b37}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+#certificate{width:100%;aspect-ratio:1.414;background:white;position:relative;overflow:hidden;box-shadow:0 3px 18px #0002}
+#certificate svg{position:absolute;inset:0;width:100%;height:100%}
+.cert-content{position:absolute;inset:12%;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;color:#222;z-index:2}
+.school{font:bold 2.1vw Arial;letter-spacing:2px;text-transform:uppercase}
+.location{font:1.1vw Arial;margin-top:5px}
+.cert-title{font:bold 3.1vw Georgia;margin:3.5% 0 1%;text-transform:uppercase;letter-spacing:2px}
+.awarded{font:1.1vw Arial;letter-spacing:4px;margin:1% 0}
+.graduate{font:bold 3.2vw Georgia;color:#9b7628;border-bottom:1px solid #a88a48;padding:0 5% 1%;margin:1% 0}
+.program{font:1.25vw Arial;margin:1%}
+.honors{font:bold 1.4vw Georgia;margin:1%;color:#987329}
+.description{font:1.1vw Arial;max-width:80%;line-height:1.5;margin:2% 0}
+.year{font:bold 1.5vw Georgia;margin:1%}
+.date-value{font:1vw Arial;margin-top:1%}
+.signatures{display:flex;justify-content:space-around;width:100%;margin-top:5%;gap:10%}
+.signature{width:35%;border-top:1px solid #333;padding-top:7px;font:1vw Arial}
+.signature strong{display:block;font-family:Georgia;font-size:1.15vw}
+.seal{position:absolute;z-index:3;right:16%;top:18%;width:9%;aspect-ratio:1;border:3px double #b08a35;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;color:#a17b2e;font:bold 1vw Georgia;transform:rotate(12deg)}
+@media(max-width:650px){
+.editor{grid-template-columns:1fr}
+header h1{font-size:22px}
+main{padding:15px 3%}
+.section{padding:14px}
+.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.design-card{padding:5px}
+.design-card h3{font-size:11px}
 }
-#certificate:before,#certificate:after{
- content:var(--orn);position:absolute;color:var(--gold);font-size:30px
-}
-#certificate:before{top:8px;left:15px}
-#certificate:after{bottom:8px;right:15px}
-.cert-inner{
- height:100%;border:2px solid var(--gold);
- padding:30px 25px;display:flex;flex-direction:column;
- align-items:center;justify-content:center;position:relative
-}
-.school{font-size:18px;font-weight:bold;letter-spacing:2px}
-.location{font-size:12px;margin-top:5px}
-.cert-title{font-family:Georgia,serif;font-size:35px;margin:23px 0 10px}
-.subheading{font-size:13px;letter-spacing:2px}
-.recipient{font-family:Georgia,serif;font-size:34px;font-style:italic;border-bottom:2px solid var(--gold);padding:9px 25px;min-width:300px;overflow-wrap:anywhere}
-.award{font-family:Georgia,serif;font-size:21px;font-weight:bold;margin:13px}
-.description{font-size:15px;line-height:1.5;max-width:650px}
-.cert-date{font-size:14px;margin-top:17px}
-.signatures{display:flex;justify-content:space-around;gap:35px;width:100%;margin-top:32px}
-.signature{width:190px;border-top:1px solid var(--ink);padding-top:7px;font-size:12px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
-footer{text-align:center;padding:20px;color:#777}
-@media(max-width:600px){main{padding:9px}.panel{padding:14px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media print{
- @page{size:landscape;margin:0}
- body{background:white}
- header,footer,main>.panel:not(#previewPanel){display:none!important}
- main{padding:0;margin:0;max-width:none}
- #previewPanel{padding:0;margin:0;box-shadow:none}
- #previewPanel h2,.actions{display:none!important}
- .preview-scroll{overflow:visible}
- #certificate{width:100%;height:100vh;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:white}
+header,.no-print,.section:not(.preview-section){display:none!important}
+main{padding:0;margin:0;max-width:none}
+.preview-section{padding:0;margin:0;border:0}
+#certificate{width:100vw;height:70.71vw;box-shadow:none;page-break-inside:avoid}
+@page{size:A4 landscape;margin:0}
 }
 </style>
 </head>
@@ -77,230 +69,314 @@ footer{text-align:center;padding:20px;color:#777}
 <body>
 
 <header>
-<h1>Elite Certificate Designer</h1>
-<p>Professional Graduation, Recognition and Academic Awards</p>
+<h1>GRADUATION CERTIFICATE DESIGNER</h1>
+<p>Create elegant and professional graduation certificates</p>
 </header>
 
 <main>
 
-<section class="panel">
-<h2>01. Select Your Certificate Frame</h2>
-<p>Choose from 100 professional certificate frame designs.</p>
-
-<div class="filters">
-<button onclick="filter('all')">All 100 Designs</button>
-<button onclick="filter('graduation')">Graduation</button>
-<button onclick="filter('honors')">With Honors</button>
-<button onclick="filter('recognition')">Recognition</button>
-<button onclick="filter('academic')">Academic Excellence</button>
-<button onclick="filter('special')">Special Awards</button>
-</div>
-
+<section class="section no-print">
+<h2>Choose Your Graduation Design</h2>
+<p>Browse the designs and select the certificate frame you like.</p>
 <div class="gallery" id="gallery"></div>
 </section>
 
-<section class="panel">
-<h2>02. Certificate Information</h2>
+<section class="section no-print">
+<h2>Customize Your Certificate</h2>
 
-<label>School / Organization Name</label>
-<input id="school" placeholder="Enter school name" oninput="update()">
-
-<label>School Address</label>
-<input id="location" placeholder="Enter school address" oninput="update()">
-
-<label>Recipient's Full Name</label>
-<input id="name" placeholder="Enter recipient's name" oninput="update()">
-
-<label>Certificate Title</label>
-<input id="title" value="CERTIFICATE OF RECOGNITION" oninput="update()">
-
-<label>Award / Achievement</label>
-<input id="award" placeholder="Example: With High Honors" oninput="update()">
-
-<label>Certificate Description</label>
-<textarea id="description" oninput="update()">In recognition of outstanding academic performance, dedication, and commitment to excellence.</textarea>
-
-<label>Date</label>
-<input id="date" type="date" oninput="update()">
-
-<label>First Signatory</label>
-<input id="sign1" placeholder="Name" oninput="update()">
-<input id="position1" placeholder="Position / Title" oninput="update()">
-
-<label>Second Signatory</label>
-<input id="sign2" placeholder="Name" oninput="update()">
-<input id="position2" placeholder="Position / Title" oninput="update()">
-
-<label>Background Color</label>
-<input type="color" id="bg" value="#fffdf7" oninput="customize()">
-
-<label>Text Color</label>
-<input type="color" id="tc" value="#17365c" oninput="customize()">
-
-<label>Frame Color</label>
-<input type="color" id="bc" value="#bd923c" oninput="customize()">
-
-</section>
-
-<section class="panel" id="previewPanel">
-<h2>03. Live Certificate Preview</h2>
-<p>Selected: <span id="selectedName">Design 1</span></p>
-
-<div class="preview-scroll">
-<div id="certificate">
-<div class="cert-inner">
-<div class="school" id="outSchool">SCHOOL NAME</div>
-<div class="location" id="outLocation">School Address</div>
-<div class="cert-title" id="outTitle">CERTIFICATE OF RECOGNITION</div>
-<div class="subheading">THIS CERTIFICATE IS AWARDED TO</div>
-<div class="recipient" id="outName">Recipient Name</div>
-<div class="award" id="outAward"></div>
-<p class="description" id="outDescription">In recognition of outstanding academic performance, dedication, and commitment to excellence.</p>
-<div class="cert-date" id="outDate"></div>
-<div class="signatures">
-<div class="signature">
-<strong id="outSign1">Authorized Signatory</strong>
-<div id="outPosition1">School Official</div>
+<div class="editor">
+<div class="field">
+<label>School Name</label>
+<input id="school" value="YOUR SCHOOL NAME">
 </div>
-<div class="signature">
-<strong id="outSign2">Authorized Signatory</strong>
-<div id="outPosition2">School Official</div>
+
+<div class="field">
+<label>School Location</label>
+<input id="location" value="School Address">
 </div>
+
+<div class="field">
+<label>Graduate's Full Name</label>
+<input id="graduate" placeholder="Enter graduate's name">
 </div>
+
+<div class="field">
+<label>Grade Level / Program</label>
+<input id="program" value="Senior High School">
 </div>
+
+<div class="field">
+<label>Honor or Achievement</label>
+<input id="honors" placeholder="With Honors / With High Honors">
+</div>
+
+<div class="field">
+<label>Graduation Year</label>
+<input id="year" value="2026">
+</div>
+
+<div class="field">
+<label>Graduation Date</label>
+<input id="date" placeholder="June 2026">
+</div>
+
+<div class="field">
+<label>Certificate Heading</label>
+<input id="heading" value="Certificate of Graduation">
+</div>
+
+<div class="field">
+<label>First Signatory Name</label>
+<input id="sign1" placeholder="Name of School Principal">
+</div>
+
+<div class="field">
+<label>First Signatory Position</label>
+<input id="position1" value="School Principal">
+</div>
+
+<div class="field">
+<label>Second Signatory Name</label>
+<input id="sign2" placeholder="Name of School Head">
+</div>
+
+<div class="field">
+<label>Second Signatory Position</label>
+<input id="position2" value="School Head">
 </div>
 </div>
 
 <div class="actions">
-<button onclick="window.print()">Download / Save as PDF</button>
-<button onclick="resetForm()">Clear Information</button>
+<button onclick="updateCertificate()">Update Preview</button>
+<button onclick="window.print()">Print / Save as PDF</button>
 </div>
+</section>
+
+<section class="section preview-section">
+<h2 class="no-print">Certificate Preview</h2>
+<div id="certificate"></div>
 </section>
 
 </main>
 
-<footer>Elite Certificate Designer | Professional Academic Awards</footer>
-
 <script>
 const palettes=[
-{name:"Navy Gold",paper:"#fffdf7",ink:"#183353",gold:"#bd923c"},
-{name:"Royal Blue Silver",paper:"#ffffff",ink:"#183b70",gold:"#9aaec9"},
-{name:"Classic Gold",paper:"#fffaf0",ink:"#59421c",gold:"#c49b48"},
-{name:"Royal Blue",paper:"#f8fbff",ink:"#143e83",gold:"#2863ad"},
-{name:"Emerald Gold",paper:"#fbfff9",ink:"#24513c",gold:"#bd9846"},
-{name:"Black Gold",paper:"#fffdf7",ink:"#252525",gold:"#c4a04b"},
-{name:"Burgundy Gold",paper:"#fffafa",ink:"#702e3e",gold:"#c19a53"},
-{name:"Forest Silver",paper:"#fbfff9",ink:"#244b3c",gold:"#9ba99f"},
-{name:"Midnight Blue",paper:"#f8faff",ink:"#182b50",gold:"#a8bce0"},
-{name:"Teal Gold",paper:"#f8ffff",ink:"#14535b",gold:"#c6a34d"}
+{name:"Royal Navy & Gold",bg:"#ffffff",main:"#14264a",gold:"#bd9746"},
+{name:"Classic White & Gold",bg:"#fffdf7",main:"#8c6827",gold:"#c6a65d"},
+{name:"Royal Blue & Silver",bg:"#ffffff",main:"#173d78",gold:"#9daec5"},
+{name:"Burgundy & Gold",bg:"#fffdfb",main:"#70263a",gold:"#c6a05b"},
+{name:"Black & Gold",bg:"#ffffff",main:"#171717",gold:"#bd9849"}
 ];
 
-const borders=["double","solid","groove","ridge","inset","outset","dashed","double","ridge","groove"];
-const ornaments=["✦","❖","✧","❦","♛","✺","✥","❋","✵","◆"];
+const layoutNames=[
+"Royal Double Border","Art Deco Corners","Laurel Celebration",
+"Classic Ornamental","Diamond Geometry","Floral Corners",
+"Grand Arch","Medallion Frame","Elegant Waves","Royal Scrollwork",
+"Geometric Panels","Decorative Corner Stars","Regal Oval",
+"Academic Columns","Sunburst Frame","Classic Ribbon",
+"Golden Lines","Diamond Corners","Ornamental Circles","Prestige Frame"
+];
 
-const categories=["graduation","honors","recognition","academic","special"];
-const designs=[];
+function frameSVG(type,p){
+let a=p.main,b=p.gold;
+let s=`<svg viewBox="0 0 1000 707" xmlns="http://www.w3.org/2000/svg">
+<rect width="1000" height="707" fill="${p.bg}"/>`;
 
-for(let i=0;i<100;i++){
- let p=palettes[Math.floor(i/10)];
- let j=i%10;
- designs.push({
-  id:i,
-  name:p.name+" Frame "+(j+1),
-  paper:p.paper,
-  ink:p.ink,
-  gold:p.gold,
-  border:borders[j],
-  ornament:ornaments[j],
-  category:categories[Math.floor(i/20)]
- });
+s+=`<rect x="17" y="17" width="966" height="673" fill="none" stroke="${a}" stroke-width="5"/>
+<rect x="28" y="28" width="944" height="651" fill="none" stroke="${b}" stroke-width="2"/>`;
+
+switch(type){
+case 0:
+s+=`<rect x="45" y="45" width="910" height="617" fill="none" stroke="${a}" stroke-width="10"/>
+<rect x="60" y="60" width="880" height="587" fill="none" stroke="${b}" stroke-width="3"/>
+<path d="M45 150V45H150 M850 45H955V150 M45 557V662H150 M850 662H955V557" fill="none" stroke="${b}" stroke-width="8"/>`;
+break;
+case 1:
+s+=`<path d="M60 180V60H180 M820 60H940V180 M60 527V647H180 M820 647H940V527" fill="none" stroke="${b}" stroke-width="7"/>
+<path d="M90 180V90H180 M820 90H910V180 M90 527V617H180 M820 617H910V527" fill="none" stroke="${a}" stroke-width="3"/>
+<path d="M60 60L180 180 M940 60L820 180 M60 647L180 527 M940 647L820 527" stroke="${b}" stroke-width="2" fill="none"/>`;
+break;
+case 2:
+s+=`<g fill="none" stroke="${b}" stroke-width="4">
+<path d="M110 200Q30 100 110 65Q160 40 180 110Q230 40 270 100Q300 155 220 205"/>
+<path d="M890 200Q970 100 890 65Q840 40 820 110Q770 40 730 100Q700 155 780 205"/>
+<path d="M110 507Q30 607 110 642Q160 667 180 597Q230 667 270 607Q300 552 220 507"/>
+<path d="M890 507Q970 607 890 642Q840 667 820 597Q770 667 730 607Q700 552 780 507"/>
+</g>`;
+break;
+case 3:
+s+=`<rect x="65" y="65" width="870" height="577" rx="28" fill="none" stroke="${b}" stroke-width="5"/>
+<rect x="80" y="80" width="840" height="547" rx="22" fill="none" stroke="${a}" stroke-width="2"/>
+<g fill="${b}"><circle cx="65" cy="65" r="12"/><circle cx="935" cy="65" r="12"/><circle cx="65" cy="642" r="12"/><circle cx="935" cy="642" r="12"/></g>`;
+break;
+case 4:
+s+=`<path d="M500 38L962 353L500 669L38 353Z" fill="none" stroke="${b}" stroke-width="5"/>
+<path d="M500 60L930 353L500 647L70 353Z" fill="none" stroke="${a}" stroke-width="2"/>
+<path d="M500 38V75 M500 632V669 M38 353H75 M925 353H962" stroke="${b}" stroke-width="8"/>`;
+break;
+case 5:
+s+=`<g fill="none" stroke="${b}" stroke-width="4">
+<path d="M40 180Q100 40 180 90Q230 20 270 110Q300 165 220 190"/>
+<path d="M960 180Q900 40 820 90Q770 20 730 110Q700 165 780 190"/>
+<path d="M40 527Q100 667 180 617Q230 687 270 597Q300 542 220 517"/>
+<path d="M960 527Q900 667 820 617Q770 687 730 597Q700 542 780 517"/>
+</g>
+<g fill="${b}"><circle cx="150" cy="120" r="10"/><circle cx="850" cy="120" r="10"/><circle cx="150" cy="587" r="10"/><circle cx="850" cy="587" r="10"/></g>`;
+break;
+case 6:
+s+=`<path d="M100 630V250A400 400 0 0 1 900 250V630" fill="none" stroke="${b}" stroke-width="7"/>
+<path d="M125 630V255A375 375 0 0 1 875 255V630" fill="none" stroke="${a}" stroke-width="3"/>
+<path d="M80 630H920" stroke="${b}" stroke-width="5"/>`;
+break;
+case 7:
+s+=`<circle cx="500" cy="353" r="300" fill="none" stroke="${b}" stroke-width="3"/>
+<circle cx="500" cy="353" r="315" fill="none" stroke="${a}" stroke-width="5"/>
+<circle cx="500" cy="353" r="325" fill="none" stroke="${b}" stroke-width="2"/>`;
+break;
+case 8:
+s+=`<g fill="none" stroke="${b}" stroke-width="5">
+<path d="M40 130Q200 20 360 130T680 130T960 130"/>
+<path d="M40 577Q200 687 360 577T680 577T960 577"/>
+<path d="M40 130V577 M960 130V577" stroke="${a}" stroke-width="3"/>
+</g>`;
+break;
+case 9:
+s+=`<g fill="none" stroke="${b}" stroke-width="4">
+<path d="M45 170Q45 45 170 45Q220 45 250 95Q300 45 350 95"/>
+<path d="M955 170Q955 45 830 45Q780 45 750 95Q700 45 650 95"/>
+<path d="M45 537Q45 662 170 662Q220 662 250 612Q300 662 350 612"/>
+<path d="M955 537Q955 662 830 662Q780 662 750 612Q700 662 650 612"/>
+</g>`;
+break;
+case 10:
+s+=`<path d="M55 55H945V652H55Z M85 85H915V622H85Z" fill="none" stroke="${b}" stroke-width="3"/>
+<path d="M55 180H100 M55 527H100 M900 180H945 M900 527H945 M300 55V90 M700 55V90 M300 617V652 M700 617V652" stroke="${a}" stroke-width="9"/>`;
+break;
+case 11:
+s+=`<g fill="${b}">
+<path d="M65 65l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
+<path d="M935 65l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
+<path d="M65 547l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
+<path d="M935 547l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
+</g>`;
+break;
+case 12:
+s+=`<ellipse cx="500" cy="353" rx="410" ry="270" fill="none" stroke="${b}" stroke-width="5"/>
+<ellipse cx="500" cy="353" rx="425" ry="285" fill="none" stroke="${a}" stroke-width="2"/>
+<path d="M90 353H55 M945 353H910" stroke="${b}" stroke-width="8"/>`;
+break;
+case 13:
+s+=`<g stroke="${b}" fill="none" stroke-width="5">
+<path d="M80 80V627 M920 80V627"/>
+<path d="M65 80H95 M65 627H95 M905 80H935 M905 627H935"/>
+<path d="M120 100V607 M880 100V607" stroke="${a}" stroke-width="2"/>
+</g>
+<g fill="${b}"><path d="M80 70l-22 25h44z M920 70l-22 25h44z M80 637l-22-25h44z M920 637l-22-25h44z"/></g>`;
+break;
+case 14:
+s+=`<g fill="none" stroke="${b}" stroke-width="3">
+<circle cx="500" cy="353" r="350"/>
+${Array.from({length:24},(_,i)=>{let t=i*Math.PI/12,x=500+350*Math.cos(t),y=353+280*Math.sin(t);return `<path d="M500 353L${x} ${y}"/>`}).join("")}
+</g>`;
+break;
+case 15:
+s+=`<path d="M100 80H900V160H820V110H180V160H100Z M100 627H900V547H820V597H180V547H100Z" fill="${b}" opacity=".8"/>
+<path d="M120 180V527 M880 180V527" stroke="${a}" stroke-width="4"/>`;
+break;
+case 16:
+s+=`<g fill="none" stroke="${b}" stroke-width="3">
+<path d="M45 100H955 M45 115H955 M45 592H955 M45 607H955"/>
+<path d="M100 45V662 M115 45V662 M885 45V662 M900 45V662"/>
+</g>`;
+break;
+case 17:
+s+=`<g fill="none" stroke="${b}" stroke-width="5">
+<path d="M40 180L180 40L320 180 M680 180L820 40L960 180"/>
+<path d="M40 527L180 667L320 527 M680 527L820 667L960 527"/>
+</g>
+<g fill="${a}"><circle cx="180" cy="40" r="9"/><circle cx="820" cy="40" r="9"/><circle cx="180" cy="667" r="9"/><circle cx="820" cy="667" r="9"/></g>`;
+break;
+case 18:
+s+=`<g fill="none" stroke="${b}" stroke-width="4">
+${Array.from({length:12},(_,i)=>{let x=90+i*74;return `<circle cx="${x}" cy="48" r="12"/><circle cx="${x}" cy="659" r="12"/>`}).join("")}
+<path d="M45 90V617 M955 90V617" stroke="${a}" stroke-width="4"/>
+</g>`;
+break;
+case 19:
+s+=`<path d="M45 45H955V662H45Z" fill="none" stroke="${b}" stroke-width="9"/>
+<path d="M65 65H935V642H65Z" fill="none" stroke="${a}" stroke-width="2"/>
+<path d="M45 45L140 45L45 140 M955 45L860 45L955 140 M45 662L140 662L45 567 M955 662L860 662L955 567" fill="none" stroke="${b}" stroke-width="8"/>`;
+break;
+}
+
+s+=`<path d="M470 55H530 M470 652H530" stroke="${b}" stroke-width="4"/>
+<path d="M500 43l12 12-12 12-12-12z M500 640l12 12-12 12-12-12z" fill="${b}"/>
+</svg>`;
+return s;
 }
 
 let selected=0;
-let activeFilter="all";
+const gallery=document.getElementById("gallery");
 
-function style(d){
- return `--paper:${d.paper};--ink:${d.ink};--gold:${d.gold};--style:${d.border};--orn:'${d.ornament}'`;
+function makeGallery(){
+gallery.innerHTML="";
+for(let i=0;i<100;i++){
+let layout=i%20;
+let palette=palettes[Math.floor(i/20)];
+let card=document.createElement("div");
+card.className="design-card"+(i===selected?" selected":"");
+card.innerHTML=`
+<div class="thumb">${frameSVG(layout,palette)}</div>
+<h3>Graduation Design ${String(i+1).padStart(2,"0")}</h3>
+<small>${layoutNames[layout]} · ${palette.name}</small>`;
+card.onclick=()=>{
+selected=i;
+document.querySelectorAll(".design-card").forEach(c=>c.classList.remove("selected"));
+card.classList.add("selected");
+updateCertificate();
+};
+gallery.appendChild(card);
+}
 }
 
-function render(){
- let gallery=document.getElementById("gallery");
- gallery.innerHTML="";
- let list=designs.filter(d=>activeFilter==="all"||d.category===activeFilter);
-
- list.forEach(d=>{
-  let card=document.createElement("div");
-  card.className="design-card"+(selected===d.id?" selected":"");
-  card.innerHTML=`
-  <div class="mini" style="${style(d)}">
-   <div class="mini-inner">
-    <b>CERTIFICATE</b>
-    <span>OF RECOGNITION</span>
-    <span>Presented to</span>
-   </div>
-  </div>
-  <p>Frame ${d.id+1}</p>
-  <small>${d.name}</small>
-  <button type="button">Choose Frame</button>`;
-  card.onclick=()=>choose(d.id);
-  gallery.appendChild(card);
- });
+function value(id){
+return document.getElementById(id).value.trim();
 }
 
-function choose(id){
- selected=id;
- let d=designs[id];
- document.getElementById("certificate").setAttribute("style",style(d));
- document.getElementById("selectedName").textContent="Frame "+(id+1)+" - "+d.name;
- document.getElementById("bg").value=d.paper;
- document.getElementById("tc").value=d.ink;
- document.getElementById("bc").value=d.gold;
- render();
+function safe(t){
+return String(t).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
 }
 
-function filter(category){
- activeFilter=category;
- render();
+function updateCertificate(){
+let palette=palettes[Math.floor(selected/20)];
+let layout=selected%20;
+let cert=document.getElementById("certificate");
+
+cert.innerHTML=`
+${frameSVG(layout,palette)}
+<div class="seal">CLASS<br>OF<br>${safe(value("year"))}</div>
+<div class="cert-content">
+<div class="school">${safe(value("school"))}</div>
+<div class="location">${safe(value("location"))}</div>
+<div class="cert-title">${safe(value("heading"))}</div>
+<div class="awarded">AWARDED TO</div>
+<div class="graduate">${safe(value("graduate")||"GRADUATE'S NAME")}</div>
+<div class="program">${safe(value("program"))}</div>
+<div class="honors">${safe(value("honors"))}</div>
+<div class="description">In recognition of successfully completing the requirements for graduation and for this important academic achievement.</div>
+<div class="year">Graduation Year ${safe(value("year"))}</div>
+<div class="date-value">${safe(value("date"))}</div>
+<div class="signatures">
+<div class="signature"><strong>${safe(value("sign1"))}</strong>${safe(value("position1"))}</div>
+<div class="signature"><strong>${safe(value("sign2"))}</strong>${safe(value("position2"))}</div>
+</div>
+</div>`;
 }
 
-function update(){
- const values={
-  outSchool:document.getElementById("school").value||"SCHOOL NAME",
-  outLocation:document.getElementById("location").value||"School Address",
-  outTitle:document.getElementById("title").value||"CERTIFICATE OF RECOGNITION",
-  outName:document.getElementById("name").value||"Recipient Name",
-  outAward:document.getElementById("award").value,
-  outDescription:document.getElementById("description").value,
-  outDate:document.getElementById("date").value,
-  outSign1:document.getElementById("sign1").value||"Authorized Signatory",
-  outPosition1:document.getElementById("position1").value||"School Official",
-  outSign2:document.getElementById("sign2").value||"Authorized Signatory",
-  outPosition2:document.getElementById("position2").value||"School Official"
- };
- Object.entries(values).forEach(([id,value])=>{
-  document.getElementById(id).textContent=value;
- });
-}
-
-function customize(){
- let cert=document.getElementById("certificate");
- cert.style.setProperty("--paper",document.getElementById("bg").value);
- cert.style.setProperty("--ink",document.getElementById("tc").value);
- cert.style.setProperty("--gold",document.getElementById("bc").value);
-}
-
-function resetForm(){
- ["school","location","name","award","date","sign1","position1","sign2","position2"].forEach(id=>{
-  document.getElementById(id).value="";
- });
- document.getElementById("title").value="CERTIFICATE OF RECOGNITION";
- document.getElementById("description").value="In recognition of outstanding academic performance, dedication, and commitment to excellence.";
- update();
-}
-
-render();
-choose(0);
-update();
+makeGallery();
+updateCertificate();
 </script>
 
 </body>
