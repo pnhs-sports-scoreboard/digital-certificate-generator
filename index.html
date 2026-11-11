@@ -3,381 +3,297 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Graduation Certificate Designer</title>
-
+<title>Prestige Graduation Certificate Studio</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Georgia,serif;background:#f3f1ed;color:#242424}
-header{background:#101b35;color:white;padding:28px 6%;text-align:center}
-header h1{margin:0;font-size:30px;letter-spacing:2px}
-header p{color:#d7c38c;font-family:Arial,sans-serif}
-main{max-width:1400px;margin:auto;padding:25px 4%}
-h2{font-family:Arial,sans-serif;color:#182747}
-.section{background:white;padding:22px;border-radius:12px;margin-bottom:25px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
-.design-card{background:#fff;border:2px solid #e5e2dc;border-radius:9px;padding:9px;cursor:pointer;text-align:center;transition:.2s}
-.design-card:hover{transform:translateY(-3px);border-color:#b18b37}
-.design-card.selected{border:3px solid #b18b37;background:#fffaf0}
-.thumb{width:100%;aspect-ratio:1.414;position:relative;overflow:hidden;background:#fff}
-.thumb svg{width:100%;height:100%;display:block}
-.design-card h3{font: bold 14px Arial;margin:9px 0 3px}
-.design-card small{font:11px Arial;color:#777}
-.editor{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-label{display:block;font:13px Arial;font-weight:bold;margin-bottom:6px;color:#333}
-input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:6px;font-size:14px}
-.field{margin-bottom:14px}
-button{padding:12px 18px;border:0;border-radius:6px;background:#172746;color:white;cursor:pointer;font-weight:bold}
-button:hover{background:#b18b37}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
-#certificate{width:100%;aspect-ratio:1.414;background:white;position:relative;overflow:hidden;box-shadow:0 3px 18px #0002}
+body{margin:0;background:#f1eee8;color:#252525;font-family:Georgia,serif}
+header{background:#111d37;color:white;text-align:center;padding:30px 15px}
+header h1{font-size:27px;letter-spacing:2px;margin:0}
+header p{color:#d8bd7b;font:13px Arial}
+main{max-width:1450px;margin:auto;padding:24px}
+.section{background:white;padding:22px;border-radius:12px;margin-bottom:22px}
+h2{font: bold 21px Arial;color:#182746}
+.intro{font:14px Arial;color:#666}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.design{border:2px solid #ddd;border-radius:9px;padding:8px;cursor:pointer;background:white}
+.design:hover,.design.active{border-color:#b28b43}
+.design.active{background:#fff9e9}
+.thumb{aspect-ratio:1.414;width:100%;overflow:hidden}
+.thumb svg{width:100%;height:100%}
+.design h3{font: bold 13px Arial;margin:8px 0 3px}
+.design small{font:11px Arial;color:#777}
+.themes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.theme-btn{background:#eee;color:#222;border:1px solid #ccc}
+.theme-btn.active{background:#172746;color:white}
+.editor{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.field label{display:block;font:bold 12px Arial;margin-bottom:6px}
+.field input{width:100%;padding:11px;border:1px solid #ccc;border-radius:5px}
+button{padding:11px 15px;border:0;border-radius:5px;background:#182746;color:white;cursor:pointer}
+button:hover{background:#9c762d}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+#certificate{width:100%;aspect-ratio:1.414;position:relative;background:white;overflow:hidden;box-shadow:0 3px 18px #0002}
 #certificate svg{position:absolute;inset:0;width:100%;height:100%}
-.cert-content{position:absolute;inset:12%;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;color:#222;z-index:2}
-.school{font:bold 2.1vw Arial;letter-spacing:2px;text-transform:uppercase}
-.location{font:1.1vw Arial;margin-top:5px}
-.cert-title{font:bold 3.1vw Georgia;margin:3.5% 0 1%;text-transform:uppercase;letter-spacing:2px}
-.awarded{font:1.1vw Arial;letter-spacing:4px;margin:1% 0}
-.graduate{font:bold 3.2vw Georgia;color:#9b7628;border-bottom:1px solid #a88a48;padding:0 5% 1%;margin:1% 0}
-.program{font:1.25vw Arial;margin:1%}
-.honors{font:bold 1.4vw Georgia;margin:1%;color:#987329}
-.description{font:1.1vw Arial;max-width:80%;line-height:1.5;margin:2% 0}
-.year{font:bold 1.5vw Georgia;margin:1%}
-.date-value{font:1vw Arial;margin-top:1%}
-.signatures{display:flex;justify-content:space-around;width:100%;margin-top:5%;gap:10%}
-.signature{width:35%;border-top:1px solid #333;padding-top:7px;font:1vw Arial}
-.signature strong{display:block;font-family:Georgia;font-size:1.15vw}
-.seal{position:absolute;z-index:3;right:16%;top:18%;width:9%;aspect-ratio:1;border:3px double #b08a35;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;color:#a17b2e;font:bold 1vw Georgia;transform:rotate(12deg)}
+.cert-content{position:absolute;inset:12% 13%;z-index:2;text-align:center;display:flex;align-items:center;flex-direction:column;justify-content:center}
+.school{font:bold 2vw Arial;letter-spacing:2px;text-transform:uppercase}
+.location{font:1vw Arial;margin-top:5px}
+.heading{font:bold 3vw Georgia;text-transform:uppercase;margin:3% 0 1%;letter-spacing:1px}
+.awarded{font:1vw Arial;letter-spacing:5px}
+.name{font:bold 3.1vw Georgia;color:var(--ink);border-bottom:2px solid var(--accent);padding:0 4% 1%;margin:1.5% 0}
+.program{font:1.2vw Arial}
+.honor{font:bold 1.4vw Georgia;color:var(--accent);margin-top:1%}
+.description{font:1vw Arial;line-height:1.5;max-width:85%;margin:2% auto}
+.year{font:bold 1.4vw Georgia;margin-top:1%}
+.date{font:1vw Arial;margin-top:1%}
+.signatures{display:flex;justify-content:space-around;width:100%;gap:10%;margin-top:5%}
+.sig{width:37%;border-top:1px solid #333;padding-top:6px;font: .9vw Arial}
+.sig strong{display:block;font: bold 1.05vw Georgia}
+.seal-text{font:bold .8vw Georgia;letter-spacing:1px}
 @media(max-width:650px){
+main{padding:10px}
+.section{padding:13px}
+.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .editor{grid-template-columns:1fr}
-header h1{font-size:22px}
-main{padding:15px 3%}
-.section{padding:14px}
-.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.design-card{padding:5px}
-.design-card h3{font-size:11px}
+header h1{font-size:20px}
 }
 @media print{
-body{background:white}
-header,.no-print,.section:not(.preview-section){display:none!important}
-main{padding:0;margin:0;max-width:none}
-.preview-section{padding:0;margin:0;border:0}
-#certificate{width:100vw;height:70.71vw;box-shadow:none;page-break-inside:avoid}
 @page{size:A4 landscape;margin:0}
+body{background:white}
+header,.no-print{display:none!important}
+main{padding:0;margin:0;width:100%;max-width:none}
+.preview{padding:0;margin:0;border:0}
+#certificate{width:100vw;height:70.71vw;box-shadow:none}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-<h1>GRADUATION CERTIFICATE DESIGNER</h1>
-<p>Create elegant and professional graduation certificates</p>
+<h1>PRESTIGE GRADUATION STUDIO</h1>
+<p>Elegant Graduation Certificates • Academic Recognition • Achievement</p>
 </header>
 
 <main>
 
 <section class="section no-print">
-<h2>Choose Your Graduation Design</h2>
-<p>Browse the designs and select the certificate frame you like.</p>
+<h2>Choose Your Certificate Design</h2>
+<p class="intro">Explore 100 graduation certificate designs and choose your favorite.</p>
+<div class="themes" id="themes"></div>
 <div class="gallery" id="gallery"></div>
 </section>
 
 <section class="section no-print">
-<h2>Customize Your Certificate</h2>
-
+<h2>Personalize Your Certificate</h2>
 <div class="editor">
-<div class="field">
-<label>School Name</label>
-<input id="school" value="YOUR SCHOOL NAME">
+<div class="field"><label>School Name</label><input id="school" value="YOUR SCHOOL NAME"></div>
+<div class="field"><label>School Address</label><input id="location" value="School Address"></div>
+<div class="field"><label>Graduate's Full Name</label><input id="graduate" placeholder="Enter full name"></div>
+<div class="field"><label>Academic Program / Grade Level</label><input id="program" value="Senior High School"></div>
+<div class="field"><label>Academic Honor</label><input id="honor" placeholder="With Honors / With High Honors"></div>
+<div class="field"><label>Graduation Year</label><input id="year" value="2026"></div>
+<div class="field"><label>Graduation Date</label><input id="date" placeholder="June 2026"></div>
+<div class="field"><label>First Signatory</label><input id="sign1" placeholder="Principal's name"></div>
+<div class="field"><label>First Signatory Position</label><input id="position1" value="School Principal"></div>
+<div class="field"><label>Second Signatory</label><input id="sign2" placeholder="School head's name"></div>
+<div class="field"><label>Second Signatory Position</label><input id="position2" value="School Head"></div>
 </div>
-
-<div class="field">
-<label>School Location</label>
-<input id="location" value="School Address">
-</div>
-
-<div class="field">
-<label>Graduate's Full Name</label>
-<input id="graduate" placeholder="Enter graduate's name">
-</div>
-
-<div class="field">
-<label>Grade Level / Program</label>
-<input id="program" value="Senior High School">
-</div>
-
-<div class="field">
-<label>Honor or Achievement</label>
-<input id="honors" placeholder="With Honors / With High Honors">
-</div>
-
-<div class="field">
-<label>Graduation Year</label>
-<input id="year" value="2026">
-</div>
-
-<div class="field">
-<label>Graduation Date</label>
-<input id="date" placeholder="June 2026">
-</div>
-
-<div class="field">
-<label>Certificate Heading</label>
-<input id="heading" value="Certificate of Graduation">
-</div>
-
-<div class="field">
-<label>First Signatory Name</label>
-<input id="sign1" placeholder="Name of School Principal">
-</div>
-
-<div class="field">
-<label>First Signatory Position</label>
-<input id="position1" value="School Principal">
-</div>
-
-<div class="field">
-<label>Second Signatory Name</label>
-<input id="sign2" placeholder="Name of School Head">
-</div>
-
-<div class="field">
-<label>Second Signatory Position</label>
-<input id="position2" value="School Head">
-</div>
-</div>
-
 <div class="actions">
-<button onclick="updateCertificate()">Update Preview</button>
+<button onclick="updateCertificate()">Update Certificate</button>
 <button onclick="window.print()">Print / Save as PDF</button>
 </div>
 </section>
 
-<section class="section preview-section">
-<h2 class="no-print">Certificate Preview</h2>
+<section class="section preview">
+<h2 class="no-print">Your Graduation Certificate</h2>
 <div id="certificate"></div>
 </section>
 
 </main>
 
 <script>
-const palettes=[
-{name:"Royal Navy & Gold",bg:"#ffffff",main:"#14264a",gold:"#bd9746"},
-{name:"Classic White & Gold",bg:"#fffdf7",main:"#8c6827",gold:"#c6a65d"},
-{name:"Royal Blue & Silver",bg:"#ffffff",main:"#173d78",gold:"#9daec5"},
-{name:"Burgundy & Gold",bg:"#fffdfb",main:"#70263a",gold:"#c6a05b"},
-{name:"Black & Gold",bg:"#ffffff",main:"#171717",gold:"#bd9849"}
+const themes=[
+{name:"Royal Navy & Gold",bg:"#fffdf8",ink:"#14284b",accent:"#c3a052",dark:"#10213e"},
+{name:"Classic Gold",bg:"#fffdf5",ink:"#94712f",accent:"#c3a052",dark:"#806027"},
+{name:"Royal Blue & Silver",bg:"#fbfcff",ink:"#183b75",accent:"#9cacc3",dark:"#193866"},
+{name:"Burgundy & Gold",bg:"#fffaf8",ink:"#76283b",accent:"#c5a05c",dark:"#5e1d30"},
+{name:"Black & Gold",bg:"#fffdf8",ink:"#242424",accent:"#c6a04b",dark:"#171717"},
+{name:"Emerald & Gold",bg:"#fbfff9",ink:"#14543f",accent:"#c5a04d",dark:"#104332"}
 ];
 
-const layoutNames=[
-"Royal Double Border","Art Deco Corners","Laurel Celebration",
-"Classic Ornamental","Diamond Geometry","Floral Corners",
-"Grand Arch","Medallion Frame","Elegant Waves","Royal Scrollwork",
-"Geometric Panels","Decorative Corner Stars","Regal Oval",
-"Academic Columns","Sunburst Frame","Classic Ribbon",
-"Golden Lines","Diamond Corners","Ornamental Circles","Prestige Frame"
-];
-
-function frameSVG(type,p){
-let a=p.main,b=p.gold;
-let s=`<svg viewBox="0 0 1000 707" xmlns="http://www.w3.org/2000/svg">
-<rect width="1000" height="707" fill="${p.bg}"/>`;
-
-s+=`<rect x="17" y="17" width="966" height="673" fill="none" stroke="${a}" stroke-width="5"/>
-<rect x="28" y="28" width="944" height="651" fill="none" stroke="${b}" stroke-width="2"/>`;
-
-switch(type){
-case 0:
-s+=`<rect x="45" y="45" width="910" height="617" fill="none" stroke="${a}" stroke-width="10"/>
-<rect x="60" y="60" width="880" height="587" fill="none" stroke="${b}" stroke-width="3"/>
-<path d="M45 150V45H150 M850 45H955V150 M45 557V662H150 M850 662H955V557" fill="none" stroke="${b}" stroke-width="8"/>`;
-break;
-case 1:
-s+=`<path d="M60 180V60H180 M820 60H940V180 M60 527V647H180 M820 647H940V527" fill="none" stroke="${b}" stroke-width="7"/>
-<path d="M90 180V90H180 M820 90H910V180 M90 527V617H180 M820 617H910V527" fill="none" stroke="${a}" stroke-width="3"/>
-<path d="M60 60L180 180 M940 60L820 180 M60 647L180 527 M940 647L820 527" stroke="${b}" stroke-width="2" fill="none"/>`;
-break;
-case 2:
-s+=`<g fill="none" stroke="${b}" stroke-width="4">
-<path d="M110 200Q30 100 110 65Q160 40 180 110Q230 40 270 100Q300 155 220 205"/>
-<path d="M890 200Q970 100 890 65Q840 40 820 110Q770 40 730 100Q700 155 780 205"/>
-<path d="M110 507Q30 607 110 642Q160 667 180 597Q230 667 270 607Q300 552 220 507"/>
-<path d="M890 507Q970 607 890 642Q840 667 820 597Q770 667 730 607Q700 552 780 507"/>
-</g>`;
-break;
-case 3:
-s+=`<rect x="65" y="65" width="870" height="577" rx="28" fill="none" stroke="${b}" stroke-width="5"/>
-<rect x="80" y="80" width="840" height="547" rx="22" fill="none" stroke="${a}" stroke-width="2"/>
-<g fill="${b}"><circle cx="65" cy="65" r="12"/><circle cx="935" cy="65" r="12"/><circle cx="65" cy="642" r="12"/><circle cx="935" cy="642" r="12"/></g>`;
-break;
-case 4:
-s+=`<path d="M500 38L962 353L500 669L38 353Z" fill="none" stroke="${b}" stroke-width="5"/>
-<path d="M500 60L930 353L500 647L70 353Z" fill="none" stroke="${a}" stroke-width="2"/>
-<path d="M500 38V75 M500 632V669 M38 353H75 M925 353H962" stroke="${b}" stroke-width="8"/>`;
-break;
-case 5:
-s+=`<g fill="none" stroke="${b}" stroke-width="4">
-<path d="M40 180Q100 40 180 90Q230 20 270 110Q300 165 220 190"/>
-<path d="M960 180Q900 40 820 90Q770 20 730 110Q700 165 780 190"/>
-<path d="M40 527Q100 667 180 617Q230 687 270 597Q300 542 220 517"/>
-<path d="M960 527Q900 667 820 617Q770 687 730 597Q700 542 780 517"/>
-</g>
-<g fill="${b}"><circle cx="150" cy="120" r="10"/><circle cx="850" cy="120" r="10"/><circle cx="150" cy="587" r="10"/><circle cx="850" cy="587" r="10"/></g>`;
-break;
-case 6:
-s+=`<path d="M100 630V250A400 400 0 0 1 900 250V630" fill="none" stroke="${b}" stroke-width="7"/>
-<path d="M125 630V255A375 375 0 0 1 875 255V630" fill="none" stroke="${a}" stroke-width="3"/>
-<path d="M80 630H920" stroke="${b}" stroke-width="5"/>`;
-break;
-case 7:
-s+=`<circle cx="500" cy="353" r="300" fill="none" stroke="${b}" stroke-width="3"/>
-<circle cx="500" cy="353" r="315" fill="none" stroke="${a}" stroke-width="5"/>
-<circle cx="500" cy="353" r="325" fill="none" stroke="${b}" stroke-width="2"/>`;
-break;
-case 8:
-s+=`<g fill="none" stroke="${b}" stroke-width="5">
-<path d="M40 130Q200 20 360 130T680 130T960 130"/>
-<path d="M40 577Q200 687 360 577T680 577T960 577"/>
-<path d="M40 130V577 M960 130V577" stroke="${a}" stroke-width="3"/>
-</g>`;
-break;
-case 9:
-s+=`<g fill="none" stroke="${b}" stroke-width="4">
-<path d="M45 170Q45 45 170 45Q220 45 250 95Q300 45 350 95"/>
-<path d="M955 170Q955 45 830 45Q780 45 750 95Q700 45 650 95"/>
-<path d="M45 537Q45 662 170 662Q220 662 250 612Q300 662 350 612"/>
-<path d="M955 537Q955 662 830 662Q780 662 750 612Q700 662 650 612"/>
-</g>`;
-break;
-case 10:
-s+=`<path d="M55 55H945V652H55Z M85 85H915V622H85Z" fill="none" stroke="${b}" stroke-width="3"/>
-<path d="M55 180H100 M55 527H100 M900 180H945 M900 527H945 M300 55V90 M700 55V90 M300 617V652 M700 617V652" stroke="${a}" stroke-width="9"/>`;
-break;
-case 11:
-s+=`<g fill="${b}">
-<path d="M65 65l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
-<path d="M935 65l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
-<path d="M65 547l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
-<path d="M935 547l20 40 40 20-40 20-20 40-20-40-40-20 40-20z"/>
-</g>`;
-break;
-case 12:
-s+=`<ellipse cx="500" cy="353" rx="410" ry="270" fill="none" stroke="${b}" stroke-width="5"/>
-<ellipse cx="500" cy="353" rx="425" ry="285" fill="none" stroke="${a}" stroke-width="2"/>
-<path d="M90 353H55 M945 353H910" stroke="${b}" stroke-width="8"/>`;
-break;
-case 13:
-s+=`<g stroke="${b}" fill="none" stroke-width="5">
-<path d="M80 80V627 M920 80V627"/>
-<path d="M65 80H95 M65 627H95 M905 80H935 M905 627H935"/>
-<path d="M120 100V607 M880 100V607" stroke="${a}" stroke-width="2"/>
-</g>
-<g fill="${b}"><path d="M80 70l-22 25h44z M920 70l-22 25h44z M80 637l-22-25h44z M920 637l-22-25h44z"/></g>`;
-break;
-case 14:
-s+=`<g fill="none" stroke="${b}" stroke-width="3">
-<circle cx="500" cy="353" r="350"/>
-${Array.from({length:24},(_,i)=>{let t=i*Math.PI/12,x=500+350*Math.cos(t),y=353+280*Math.sin(t);return `<path d="M500 353L${x} ${y}"/>`}).join("")}
-</g>`;
-break;
-case 15:
-s+=`<path d="M100 80H900V160H820V110H180V160H100Z M100 627H900V547H820V597H180V547H100Z" fill="${b}" opacity=".8"/>
-<path d="M120 180V527 M880 180V527" stroke="${a}" stroke-width="4"/>`;
-break;
-case 16:
-s+=`<g fill="none" stroke="${b}" stroke-width="3">
-<path d="M45 100H955 M45 115H955 M45 592H955 M45 607H955"/>
-<path d="M100 45V662 M115 45V662 M885 45V662 M900 45V662"/>
-</g>`;
-break;
-case 17:
-s+=`<g fill="none" stroke="${b}" stroke-width="5">
-<path d="M40 180L180 40L320 180 M680 180L820 40L960 180"/>
-<path d="M40 527L180 667L320 527 M680 527L820 667L960 527"/>
-</g>
-<g fill="${a}"><circle cx="180" cy="40" r="9"/><circle cx="820" cy="40" r="9"/><circle cx="180" cy="667" r="9"/><circle cx="820" cy="667" r="9"/></g>`;
-break;
-case 18:
-s+=`<g fill="none" stroke="${b}" stroke-width="4">
-${Array.from({length:12},(_,i)=>{let x=90+i*74;return `<circle cx="${x}" cy="48" r="12"/><circle cx="${x}" cy="659" r="12"/>`}).join("")}
-<path d="M45 90V617 M955 90V617" stroke="${a}" stroke-width="4"/>
-</g>`;
-break;
-case 19:
-s+=`<path d="M45 45H955V662H45Z" fill="none" stroke="${b}" stroke-width="9"/>
-<path d="M65 65H935V642H65Z" fill="none" stroke="${a}" stroke-width="2"/>
-<path d="M45 45L140 45L45 140 M955 45L860 45L955 140 M45 662L140 662L45 567 M955 662L860 662L955 567" fill="none" stroke="${b}" stroke-width="8"/>`;
-break;
-}
-
-s+=`<path d="M470 55H530 M470 652H530" stroke="${b}" stroke-width="4"/>
-<path d="M500 43l12 12-12 12-12-12z M500 640l12 12-12 12-12-12z" fill="${b}"/>
-</svg>`;
-return s;
-}
-
-let selected=0;
+const themeFilters=document.getElementById("themes");
 const gallery=document.getElementById("gallery");
+let selected=0;
+let filter="All";
 
-function makeGallery(){
+function esc(v){
+return String(v).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function leaves(cx,cy,flip,color){
+let out="";
+for(let i=0;i<8;i++){
+let y=cy+i*13;
+let x=cx+(flip?-1:1)*i*3;
+out+=`<ellipse cx="${x}" cy="${y}" rx="13" ry="5" transform="rotate(${flip?145:35} ${x} ${y})" fill="${color}"/>`;
+}
+return out;
+}
+
+function ornaments(t,n){
+let ink=t.ink,a=t.accent;
+let star=(x,y,r)=>`<path d="M${x} ${y-r}L${x+r*.25} ${y-r*.25}L${x+r} ${y}L${x+r*.25} ${y+r*.25}L${x} ${y+r}L${x-r*.25} ${y+r*.25}L${x-r} ${y}L${x-r*.25} ${y-r*.25}Z" fill="${a}"/>`;
+let out="";
+out+=`<rect x="20" y="20" width="960" height="667" fill="none" stroke="${ink}" stroke-width="7"/>
+<rect x="34" y="34" width="932" height="639" fill="none" stroke="${a}" stroke-width="3"/>
+<rect x="48" y="48" width="904" height="611" fill="none" stroke="${ink}" stroke-width="1"/>`;
+
+if(n%6===0){
+out+=`<path d="M60 210V60H210 M790 60H940V210 M60 497V647H210 M790 647H940V497" stroke="${a}" stroke-width="7" fill="none"/>
+<path d="M70 180Q120 65 230 85Q160 140 70 180 M930 180Q880 65 770 85Q840 140 930 180" fill="${a}" opacity=".45"/>`;
+}else if(n%6===1){
+out+=`<path d="M60 170Q90 60 190 65Q250 65 270 125 M940 170Q910 60 810 65Q750 65 730 125 M60 537Q90 647 190 642Q250 642 270 582 M940 537Q910 647 810 642Q750 642 730 582" fill="none" stroke="${a}" stroke-width="5"/>`;
+}else if(n%6===2){
+out+=`<path d="M60 90H940 M60 617H940" stroke="${a}" stroke-width="5"/>
+<path d="M80 100L500 125L920 100 M80 607L500 582L920 607" stroke="${ink}" stroke-width="2" fill="none"/>`;
+}else if(n%6===3){
+out+=`<rect x="65" y="65" width="870" height="577" rx="22" fill="none" stroke="${a}" stroke-width="6"/>
+<rect x="78" y="78" width="844" height="551" rx="18" fill="none" stroke="${ink}" stroke-width="2"/>`;
+}else if(n%6===4){
+out+=`<path d="M55 55L180 180L55 305 M945 55L820 180L945 305 M55 652L180 527L55 402 M945 652L820 527L945 402" fill="none" stroke="${a}" stroke-width="5"/>`;
+}else{
+out+=`<path d="M80 75V632 M920 75V632" stroke="${a}" stroke-width="5"/>
+<path d="M95 75V632 M905 75V632" stroke="${ink}" stroke-width="2"/>`;
+}
+
+// decorative corner floral details
+out+=`<g>${leaves(95,90,0,a)}${leaves(905,90,1,a)}${leaves(95,520,1,a)}${leaves(905,520,0,a)}</g>`;
+
+// academic laurel wreath
+out+=`<g fill="none" stroke="${a}" stroke-width="4">
+<path d="M385 260Q270 165 300 90 M615 260Q730 165 700 90"/>
+</g>
+<g>${leaves(315,105,0,a)}${leaves(685,105,1,a)}</g>`;
+
+// inner decorative panels
+out+=`<path d="M240 190H760 M240 515H760" stroke="${a}" stroke-width="2"/>
+<path d="M280 198H720 M280 507H720" stroke="${ink}" stroke-width="1"/>`;
+
+// ornamental center medallion
+out+=`<circle cx="500" cy="355" r="48" fill="${t.bg}" stroke="${a}" stroke-width="5"/>
+<circle cx="500" cy="355" r="39" fill="none" stroke="${ink}" stroke-width="2"/>
+${star(500,355,22)}`;
+
+for(let x of [130,870])out+=star(x,355,13);
+if(n%3===0){
+out+=`<path d="M420 160Q500 105 580 160L560 180H440Z" fill="${a}" opacity=".8"/>
+<path d="M420 550Q500 605 580 550L560 530H440Z" fill="${a}" opacity=".8"/>`;
+}
+if(n%3===1){
+out+=`<path d="M150 260Q220 220 270 260 M730 260Q780 220 850 260 M150 450Q220 490 270 450 M730 450Q780 490 850 450" fill="none" stroke="${a}" stroke-width="4"/>`;
+}
+if(n%3===2){
+out+=`<g fill="${a}">${star(500,90,13)}${star(500,617,13)}${star(200,355,9)}${star(800,355,9)}</g>`;
+}
+
+return out;
+}
+
+function frameSVG(t,n){
+let background= t.bg;
+let decor=ornaments(t,n);
+let dark=t.dark;
+let top=n%4===0?
+`<rect x="300" y="115" width="400" height="45" rx="8" fill="${dark}"/>
+<path d="M300 115L280 137L300 160 M700 115L720 137L700 160" fill="${t.accent}"/>`:
+`<path d="M380 135H620" stroke="${t.accent}" stroke-width="5"/>
+<path d="M450 120L500 90L550 120L500 150Z" fill="${t.accent}"/>`;
+
+return `<svg viewBox="0 0 1000 707" xmlns="http://www.w3.org/2000/svg">
+<rect width="1000" height="707" fill="${background}"/>
+<rect x="55" y="55" width="890" height="597" fill="none" stroke="${t.accent}" stroke-width="1" opacity=".5"/>
+${decor}
+${top}
+<path d="M110 230H890 M110 480H890" stroke="${t.accent}" stroke-width="1" opacity=".5"/>
+<text x="500" y="185" font-family="Georgia" font-size="18" text-anchor="middle" fill="${dark}" letter-spacing="6">ACADEMIC EXCELLENCE</text>
+<text x="500" y="570" font-family="Georgia" font-size="17" text-anchor="middle" fill="${dark}" letter-spacing="4">GRADUATION • ACHIEVEMENT • SUCCESS</text>
+</svg>`;
+}
+
+function makeThemes(){
+let all=document.createElement("button");
+all.textContent="All Designs";
+all.className="theme-btn active";
+all.onclick=()=>{filter="All";renderGallery();};
+themeFilters.appendChild(all);
+themes.forEach((t,i)=>{
+let b=document.createElement("button");
+b.textContent=t.name;
+b.className="theme-btn";
+b.onclick=()=>{filter=t.name;renderGallery();};
+themeFilters.appendChild(b);
+});
+}
+
+function renderGallery(){
 gallery.innerHTML="";
+document.querySelectorAll(".theme-btn").forEach(b=>{
+b.classList.toggle("active",b.textContent===filter);
+});
 for(let i=0;i<100;i++){
-let layout=i%20;
-let palette=palettes[Math.floor(i/20)];
+let themeIndex=i%6;
+let t=themes[themeIndex];
+if(filter!=="All"&&filter!==t.name)continue;
 let card=document.createElement("div");
-card.className="design-card"+(i===selected?" selected":"");
-card.innerHTML=`
-<div class="thumb">${frameSVG(layout,palette)}</div>
+card.className="design"+(i===selected?" active":"");
+card.innerHTML=`<div class="thumb">${frameSVG(t,i)}</div>
 <h3>Graduation Design ${String(i+1).padStart(2,"0")}</h3>
-<small>${layoutNames[layout]} · ${palette.name}</small>`;
+<small>${t.name} · Layout ${i+1}</small>`;
 card.onclick=()=>{
 selected=i;
-document.querySelectorAll(".design-card").forEach(c=>c.classList.remove("selected"));
-card.classList.add("selected");
+renderGallery();
 updateCertificate();
 };
 gallery.appendChild(card);
 }
 }
 
-function value(id){
-return document.getElementById(id).value.trim();
-}
-
-function safe(t){
-return String(t).replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-}
+function val(id){return document.getElementById(id).value.trim();}
 
 function updateCertificate(){
-let palette=palettes[Math.floor(selected/20)];
-let layout=selected%20;
-let cert=document.getElementById("certificate");
+let t=themes[selected%6];
+let n=selected;
+let certificate=document.getElementById("certificate");
+certificate.style.setProperty("--ink",t.ink);
+certificate.style.setProperty("--accent",t.accent);
 
-cert.innerHTML=`
-${frameSVG(layout,palette)}
-<div class="seal">CLASS<br>OF<br>${safe(value("year"))}</div>
+certificate.innerHTML=`
+${frameSVG(t,n)}
 <div class="cert-content">
-<div class="school">${safe(value("school"))}</div>
-<div class="location">${safe(value("location"))}</div>
-<div class="cert-title">${safe(value("heading"))}</div>
-<div class="awarded">AWARDED TO</div>
-<div class="graduate">${safe(value("graduate")||"GRADUATE'S NAME")}</div>
-<div class="program">${safe(value("program"))}</div>
-<div class="honors">${safe(value("honors"))}</div>
-<div class="description">In recognition of successfully completing the requirements for graduation and for this important academic achievement.</div>
-<div class="year">Graduation Year ${safe(value("year"))}</div>
-<div class="date-value">${safe(value("date"))}</div>
+<div class="school">${esc(val("school"))}</div>
+<div class="location">${esc(val("location"))}</div>
+<div class="heading">Certificate of Graduation</div>
+<div class="awarded">THIS CERTIFICATE IS AWARDED TO</div>
+<div class="name">${esc(val("graduate")||"GRADUATE'S NAME")}</div>
+<div class="program">${esc(val("program"))}</div>
+<div class="honor">${esc(val("honor"))}</div>
+<div class="description">
+In recognition of successfully completing the academic requirements
+and reaching this important milestone in education.
+</div>
+<div class="year">GRADUATION CLASS OF ${esc(val("year"))}</div>
+<div class="date">${esc(val("date"))}</div>
 <div class="signatures">
-<div class="signature"><strong>${safe(value("sign1"))}</strong>${safe(value("position1"))}</div>
-<div class="signature"><strong>${safe(value("sign2"))}</strong>${safe(value("position2"))}</div>
+<div class="sig"><strong>${esc(val("sign1"))}</strong>${esc(val("position1"))}</div>
+<div class="sig"><strong>${esc(val("sign2"))}</strong>${esc(val("position2"))}</div>
 </div>
 </div>`;
 }
 
-makeGallery();
+makeThemes();
+renderGallery();
 updateCertificate();
 </script>
-
 </body>
 </html>
+
