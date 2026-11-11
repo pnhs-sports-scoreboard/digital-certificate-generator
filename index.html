@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,382 +5,423 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prestige Certificate Studio</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
 :root {
-  --gold:#c8a45d;
-  --navy:#102344;
+  --gold:#c5a04d;
+  --dark:#101e35;
   --paper:#fffdf7;
+  --ink:#18243a;
 }
 
-* { box-sizing:border-box; }
-
+* {box-sizing:border-box}
 body {
   margin:0;
-  background:#f0eee9;
-  color:#202b3a;
   font-family:Montserrat,Arial,sans-serif;
+  background:#f1f2f5;
+  color:#20283a;
 }
-
 header {
-  background:#102344;
-  color:#fff;
-  padding:25px 5%;
-  border-bottom:4px solid #c8a45d;
+  background:#101e35;
+  color:white;
+  padding:23px 5%;
+  border-bottom:4px solid #c5a04d;
 }
-
-header h1 {
-  margin:0;
+.brand {
   font-family:Cinzel,serif;
-  letter-spacing:3px;
-  font-size:clamp(19px,3vw,30px);
-}
-
-header p {
-  margin:7px 0 0;
-  color:#e3c98e;
-  font-size:12px;
+  font-size:23px;
   letter-spacing:2px;
 }
-
-.container {
-  max-width:1500px;
-  margin:auto;
-  padding:25px;
-}
-
-.section-title {
+header p {margin:7px 0 0;color:#d8c99f;font-size:12px}
+main {max-width:1500px;margin:auto;padding:25px}
+h2 {
   font-family:Cinzel,serif;
-  color:#102344;
-  font-size:20px;
-  margin:20px 0 13px;
+  font-size:19px;
+  color:#142440;
 }
-
-.filters {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;
-  margin-bottom:20px;
-}
-
-select,input,textarea {
-  width:100%;
-  padding:12px;
-  border:1px solid #d5d0c5;
-  border-radius:5px;
-  background:white;
-  font:inherit;
-  font-size:13px;
-}
-
 .workspace {
   display:grid;
   grid-template-columns:340px minmax(0,1fr);
-  gap:25px;
+  gap:24px;
   align-items:start;
 }
-
 .panel {
   background:white;
   padding:20px;
-  border-radius:9px;
-  box-shadow:0 4px 18px #17243a12;
+  border:1px solid #e2e2e2;
+  border-radius:10px;
+  margin-bottom:20px;
 }
-
-.panel h3 {
-  font-family:Cinzel,serif;
-  color:#102344;
-  margin:0 0 15px;
-}
-
-.field { margin-bottom:12px; }
-
-.field label {
+label {
   display:block;
   font-size:11px;
   font-weight:700;
-  margin-bottom:6px;
-  color:#596273;
+  margin:13px 0 6px;
+  color:#3c4555;
+  text-transform:uppercase;
   letter-spacing:.5px;
 }
-
+input,select {
+  width:100%;
+  padding:11px;
+  border:1px solid #d6d9df;
+  border-radius:5px;
+  font:13px Montserrat,sans-serif;
+  background:white;
+}
+input:focus,select:focus {outline:2px solid #c5a04d}
+button {
+  border:0;
+  border-radius:5px;
+  padding:11px 15px;
+  cursor:pointer;
+  font-weight:700;
+  font-family:Montserrat,sans-serif;
+  font-size:12px;
+}
+.primary {background:#142440;color:white}
+.gold-btn {background:#b99542;color:#101e35}
+.secondary {background:#e9edf3;color:#17243b}
+button:hover {filter:brightness(.94)}
+.button-row {display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.button-row button {flex:1}
+.gallery-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
 .gallery {
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:13px;
 }
-
 .design-card {
   background:white;
-  border:2px solid transparent;
-  padding:7px;
+  border:1px solid #ddd;
   border-radius:7px;
+  padding:8px;
   cursor:pointer;
   text-align:left;
   transition:.2s;
 }
-
-.design-card:hover {
-  transform:translateY(-3px);
-  box-shadow:0 5px 15px #0002;
-}
-
-.design-card.active {
-  border-color:#bd9650;
-  box-shadow:0 0 0 2px #bd965044;
-}
-
-.design-card svg {
-  width:100%;
+.design-card:hover {transform:translateY(-3px);border-color:#b99542}
+.design-card.selected {border:2px solid #b99542;background:#fffaf0}
+.design-card small {
   display:block;
-  border-radius:3px;
-}
-
-.design-card span {
-  display:block;
+  padding:8px 2px 2px;
   font-size:10px;
   font-weight:700;
-  padding:7px 2px 2px;
-  color:#26344a;
 }
-
-.preview-area {
-  min-width:0;
-}
-
-.preview-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:12px;
-}
-
-.preview-top h3 {
-  font-family:Cinzel,serif;
-  color:#102344;
-  margin:0;
-}
-
-.certificate-wrap {
-  background:#dedbd4;
-  padding:22px;
-  border-radius:8px;
-  overflow:auto;
-}
-
-.certificate {
-  width:100%;
-  aspect-ratio:1.414 / 1;
-  min-width:500px;
+.mini {
+  height:105px;
   position:relative;
   overflow:hidden;
   background:var(--paper);
-  color:var(--navy);
-  box-shadow:0 5px 25px #0003;
-  isolation:isolate;
-}
-
-.certificate svg {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:-1;
-}
-
-.cert-content {
-  position:absolute;
-  inset:0;
+  border:5px double var(--gold);
+  color:var(--dark);
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:8% 13%;
+  padding:9px;
 }
-
-.school {
-  font-family:Cinzel,serif;
-  font-size:clamp(9px,1.35vw,17px);
-  font-weight:700;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  margin-bottom:1.5%;
+.mini:before {
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px solid var(--gold);
 }
-
-.location {
-  font-size:clamp(7px,.8vw,10px);
-  letter-spacing:2px;
-  margin-bottom:3%;
-}
-
-.small-rule {
-  width:30%;
-  height:2px;
-  background:var(--gold);
-  margin:1% 0 3%;
-}
-
-.heading {
-  font-family:Cinzel,serif;
-  font-size:clamp(17px,3.1vw,40px);
-  line-height:1.2;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin:1% 0;
-}
-
-.awarded {
-  font-size:clamp(8px,1vw,13px);
-  letter-spacing:3px;
-  margin:2% 0;
-}
-
-.recipient {
-  font-family:"Great Vibes",cursive;
-  font-size:clamp(25px,5vw,65px);
+.mini:after {
+  content:"✦  ❧  ✦";
+  position:absolute;
+  bottom:5px;
   color:var(--gold);
-  line-height:1.25;
-  margin:1% 0;
+  font-size:11px;
 }
-
-.description {
-  font-family:"Playfair Display",serif;
-  font-size:clamp(9px,1.2vw,15px);
-  max-width:80%;
-  line-height:1.6;
-  margin:2% auto;
+.mini span {font-family:Cinzel,serif;font-size:9px;font-weight:bold;z-index:1}
+.mini b {font-family:"Great Vibes",cursive;font-size:18px;z-index:1}
+.mini em {font-size:6px;letter-spacing:1px;font-style:normal;z-index:1}
+.mini .mini-seal {
+  position:absolute;
+  top:7px;
+  right:9px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  width:17px;
+  height:17px;
+  font-size:8px;
+  display:grid;
+  place-items:center;
 }
-
-.program {
-  font-family:Cinzel,serif;
-  font-size:clamp(9px,1.2vw,15px);
-  font-weight:700;
-  margin:1% 0;
-}
-
-.year {
-  font-family:Cinzel,serif;
-  font-size:clamp(10px,1.3vw,16px);
-  letter-spacing:2px;
-  margin-top:1%;
-}
-
-.signatures {
+.preview-area {min-width:0}
+.preview-top {
   display:flex;
   justify-content:space-between;
-  width:85%;
-  margin-top:5%;
-  gap:30px;
+  align-items:center;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+  gap:10px;
 }
-
-.signature {
-  flex:1;
-  border-top:1px solid var(--gold);
-  padding-top:7px;
+.certificate {
+  --gold:#c5a04d;
+  --dark:#101e35;
+  --paper:#fffdf7;
+  --ink:#18243a;
+  position:relative;
+  width:100%;
+  aspect-ratio:1.414 / 1;
+  background:var(--paper);
+  color:var(--ink);
+  overflow:hidden;
+  box-shadow:0 7px 25px #0002;
+  padding:5.5%;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+.certificate:before {
+  content:"";
+  position:absolute;
+  inset:2.1%;
+  border:5px double var(--gold);
+  z-index:-1;
+}
+.certificate:after {
+  content:"";
+  position:absolute;
+  inset:3.3%;
+  border:1px solid var(--gold);
+  z-index:-1;
+}
+.certificate .inner-border {
+  position:absolute;
+  inset:5%;
+  border:1px solid color-mix(in srgb,var(--gold) 65%,transparent);
+  pointer-events:none;
+  z-index:-1;
+}
+.corner {
+  position:absolute;
+  color:var(--gold);
+  font-family:serif;
+  font-size:clamp(25px,5vw,65px);
+  line-height:1;
+  z-index:0;
+}
+.tl {top:3%;left:3%}
+.tr {top:3%;right:3%;transform:scaleX(-1)}
+.bl {bottom:3%;left:3%;transform:scaleY(-1)}
+.br {bottom:3%;right:3%;transform:scale(-1)}
+.side-ornament {
+  position:absolute;
+  top:30%;
+  color:var(--gold);
+  font-size:clamp(13px,2vw,25px);
+  writing-mode:vertical-rl;
+  letter-spacing:8px;
+}
+.left-ornament {left:3.5%}
+.right-ornament {right:3.5%;transform:rotate(180deg)}
+.cert-logo {
+  width:65px;
+  height:65px;
+  object-fit:contain;
+  margin-bottom:8px;
+  display:none;
+}
+.cert-school {
+  font-family:Cinzel,serif;
+  font-size:clamp(9px,1.4vw,17px);
+  font-weight:700;
+  letter-spacing:2px;
+  color:var(--dark);
+  text-transform:uppercase;
+}
+.cert-location {
+  font-size:clamp(6px,.8vw,10px);
+  letter-spacing:1px;
+  margin-top:4px;
+}
+.cert-divider {
+  color:var(--gold);
+  font-size:clamp(12px,2vw,22px);
+  margin:7px 0;
+}
+.cert-heading {
+  font-family:Cinzel,serif;
+  color:var(--dark);
+  font-size:clamp(17px,3.2vw,39px);
+  font-weight:700;
+  letter-spacing:3px;
+  line-height:1.2;
+  margin:5px 0;
+}
+.cert-subheading {
+  font-family:Playfair Display,serif;
+  font-size:clamp(8px,1.2vw,14px);
+  font-style:italic;
+  letter-spacing:1px;
+}
+.awarded {
+  font-size:clamp(7px,1vw,12px);
+  letter-spacing:2px;
+  margin:15px 0 5px;
+}
+.cert-recipient {
+  font-family:"Great Vibes",cursive;
+  color:var(--dark);
+  font-size:clamp(28px,5.4vw,64px);
+  line-height:1.2;
+  padding:0 10px 5px;
+  border-bottom:1px solid var(--gold);
+  min-width:50%;
+}
+.cert-description {
+  font-family:Playfair Display,serif;
+  font-size:clamp(8px,1.2vw,14px);
+  max-width:76%;
+  line-height:1.6;
+  margin:12px auto 8px;
+}
+.cert-award {
+  font-family:Cinzel,serif;
+  color:var(--dark);
+  font-size:clamp(11px,1.8vw,21px);
+  font-weight:700;
+  letter-spacing:1px;
+  margin:4px 0;
+}
+.cert-grade {font-size:clamp(7px,1vw,12px);margin-top:4px}
+.cert-year {
+  font-family:Playfair Display,serif;
+  font-size:clamp(9px,1.2vw,14px);
+  margin-top:10px;
+}
+.cert-date {
+  font-size:clamp(7px,1vw,11px);
+  margin-top:8px;
+}
+.cert-bottom {
+  display:flex;
+  justify-content:space-around;
+  align-items:end;
+  width:80%;
+  margin-top:clamp(15px,3vw,32px);
+  gap:15px;
+}
+.signature {width:38%;text-align:center}
+.signature-line {border-top:1px solid var(--dark);margin-bottom:5px}
+.signature strong {
+  font-family:Cinzel,serif;
   font-size:clamp(7px,.9vw,11px);
 }
-
-.signature strong {
-  display:block;
-  font-family:Cinzel,serif;
-  font-size:clamp(8px,1vw,13px);
-  margin-bottom:4px;
-}
-
-.seal-text {
+.signature small {display:block;font-size:clamp(6px,.8vw,9px);margin-top:3px}
+.seal {
   position:absolute;
   right:9%;
-  bottom:12%;
-  width:11%;
-  aspect-ratio:1;
+  top:36%;
+  width:clamp(40px,7vw,75px);
+  height:clamp(40px,7vw,75px);
   border:3px double var(--gold);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  font-family:Cinzel,serif;
-  font-size:clamp(6px,.8vw,10px);
-  font-weight:bold;
   color:var(--gold);
+  font-family:Cinzel,serif;
+  font-size:clamp(7px,1vw,12px);
   transform:rotate(-12deg);
-  background:var(--paper);
 }
-
-.buttons {
-  display:flex;
-  gap:9px;
-  flex-wrap:wrap;
-  margin-top:15px;
-}
-
-button {
-  border:0;
-  padding:12px 17px;
-  border-radius:5px;
-  cursor:pointer;
+.ribbon {
+  position:absolute;
+  top:12%;
+  right:-10%;
+  background:var(--gold);
+  color:var(--dark);
+  width:40%;
+  padding:6px;
+  transform:rotate(35deg);
+  font-size:clamp(6px,.8vw,10px);
   font-weight:700;
-  font-size:12px;
+  letter-spacing:1px;
 }
-
-.primary {
-  background:#102344;
-  color:white;
+.certificate.layout-1 {border-radius:0}
+.certificate.layout-2:before {inset:1.4%;border-width:8px}
+.certificate.layout-2:after {inset:4%;border:3px solid var(--gold)}
+.certificate.layout-3:before {inset:2%;border:8px ridge var(--gold)}
+.certificate.layout-3:after {inset:4.5%;border:1px dashed var(--gold)}
+.certificate.layout-4:before {inset:2%;border:7px double var(--gold);border-radius:24px}
+.certificate.layout-4:after {inset:5%;border:1px solid var(--gold);border-radius:18px}
+.certificate.layout-5:before {inset:2%;border:3px solid var(--gold)}
+.certificate.layout-5:after {inset:3.5%;border:3px double var(--gold)}
+.certificate.layout-6:before {inset:2%;border:10px double var(--gold)}
+.certificate.layout-6:after {inset:5%;border:1px dashed var(--gold)}
+.certificate.layout-7:before {inset:2%;border:5px groove var(--gold)}
+.certificate.layout-7:after {inset:4%;border:1px solid var(--gold)}
+.certificate.layout-8:before {inset:2%;border:4px double var(--gold);border-radius:5px}
+.certificate.layout-8:after {inset:5%;border:2px dotted var(--gold)}
+.certificate.layout-9:before {inset:2%;border:6px ridge var(--gold)}
+.certificate.layout-9:after {inset:4.5%;border:2px solid var(--gold)}
+.certificate.layout-10:before {inset:2%;border:3px solid var(--gold);box-shadow:inset 0 0 0 5px var(--paper),inset 0 0 0 7px var(--gold)}
+.certificate.layout-10:after {inset:5%;border:1px solid var(--gold)}
+.certificate.layout-2 .cert-heading,
+.certificate.layout-6 .cert-heading {letter-spacing:5px}
+.certificate.layout-3 .cert-recipient {font-family:Playfair Display,serif;font-style:italic}
+.certificate.layout-4 .cert-heading {font-size:clamp(15px,2.7vw,33px)}
+.certificate.layout-5 .cert-recipient {font-family:Playfair Display,serif;font-weight:700}
+.certificate.layout-7 .cert-school {letter-spacing:3px}
+.certificate.layout-8 .cert-recipient {font-family:Cinzel,serif;font-size:clamp(20px,3.8vw,45px)}
+.certificate.layout-9 .cert-award {letter-spacing:3px}
+.certificate.layout-10 .cert-recipient {font-family:"Great Vibes",cursive;font-size:clamp(30px,5.8vw,68px)}
+.certificate.no-seal .seal {display:none}
+.certificate.no-ribbon .ribbon {display:none}
+.certificate.no-side .side-ornament {display:none}
+.certificate.no-corners .corner {display:none}
+.certificate.theme-navy {--gold:#c5a04d;--dark:#10213c;--paper:#fffdf7;--ink:#17243b}
+.certificate.theme-classic {--gold:#aa8538;--dark:#463416;--paper:#fffaf0;--ink:#342a1b}
+.certificate.theme-blue {--gold:#aabbd1;--dark:#17365b;--paper:#fbfdff;--ink:#1a2e49}
+.certificate.theme-burgundy {--gold:#c4a15c;--dark:#681f32;--paper:#fffaf7;--ink:#39232a}
+.certificate.theme-black {--gold:#c6a04b;--dark:#171717;--paper:#fffdf8;--ink:#222}
+.certificate.theme-emerald {--gold:#c5a65c;--dark:#145341;--paper:#fbfff9;--ink:#17382d}
+footer {
+  text-align:center;
+  padding:20px;
+  color:#777;
+  font-size:11px;
 }
-
-.secondary {
-  background:#c8a45d;
-  color:#17243a;
-}
-
-button:hover { opacity:.85; }
-
-.count {
-  font-size:12px;
-  color:#657080;
-  margin:10px 0;
-}
-
 @media(max-width:900px) {
-  .workspace { grid-template-columns:1fr; }
-  .gallery { grid-template-columns:repeat(3,1fr); }
+  .workspace {grid-template-columns:1fr}
+  .gallery {grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-
-@media(max-width:480px) {
-  .container { padding:12px; }
-  .panel { padding:13px; }
-  .gallery { grid-template-columns:repeat(2,1fr); }
-  .certificate-wrap { padding:8px; }
+@media(max-width:500px) {
+  main {padding:12px}
+  .gallery {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .panel {padding:14px}
+  .certificate {padding:5%}
+  .cert-logo {width:35px;height:35px}
+  .cert-bottom {margin-top:12px}
 }
-
 @media print {
-  @page { size:A4 landscape; margin:0; }
-
-  body { background:white; }
-  header,.filters,.panel,.gallery,.preview-top,
-  .buttons,.count,.section-title { display:none !important; }
-
-  .container,.workspace,.preview-area,.certificate-wrap {
-    display:block;
-    padding:0;
-    margin:0;
-    width:100%;
-    background:white;
-    box-shadow:none;
-  }
-
+  @page {size:A4 landscape;margin:0}
+  body {background:white}
+  header,.editor-panel,.gallery-panel,.preview-top,footer {display:none!important}
+  main {padding:0;margin:0;max-width:none}
+  .workspace {display:block}
+  .preview-area {width:100%;margin:0}
   .certificate {
     width:297mm;
     height:210mm;
-    min-width:0;
+    aspect-ratio:auto;
     box-shadow:none;
-    print-color-adjust:exact;
     -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
   }
 }
 </style>
@@ -390,444 +430,369 @@ button:hover { opacity:.85; }
 <body>
 
 <header>
-  <h1>PRESTIGE CERTIFICATE STUDIO</h1>
-  <p>CREATE • DESIGN • CELEBRATE ACHIEVEMENT</p>
+  <div class="brand">PRESTIGE CERTIFICATE STUDIO</div>
+  <p>Elegant Certificate Designs • Personalize • Preview • Print</p>
 </header>
 
-<main class="container">
-
-  <h2 class="section-title">Choose Your Certificate</h2>
-
-  <div class="filters">
-    <select id="category">
-      <option value="All">All Categories</option>
-      <option>Graduation</option>
-      <option>Simple Awards</option>
-      <option>Academic Honors</option>
-      <option>Participation</option>
-      <option>Completion</option>
-      <option>Special Recognition</option>
-    </select>
-
-    <select id="theme">
-      <option value="All">All Color Themes</option>
-      <option>Royal Navy & Gold</option>
-      <option>Classic Gold</option>
-      <option>Royal Blue & Silver</option>
-      <option>Burgundy & Gold</option>
-      <option>Black & Gold</option>
-      <option>Emerald & Gold</option>
-    </select>
-  </div>
-
+<main>
   <div class="workspace">
 
-    <aside class="panel">
-      <h3>Certificate Details</h3>
+    <div>
+      <section class="panel editor-panel">
+        <h2>Certificate Details</h2>
 
-      <div class="field">
-        <label>SCHOOL / ORGANIZATION</label>
+        <label>School Name</label>
         <input id="school" value="YOUR SCHOOL NAME">
-      </div>
 
-      <div class="field">
-        <label>LOCATION</label>
-        <input id="location" value="School Address">
-      </div>
+        <label>School Location</label>
+        <input id="location" value="Your School Location">
 
-      <div class="field">
-        <label>CERTIFICATE HEADING</label>
-        <input id="heading" value="Certificate of Graduation">
-      </div>
+        <label>Upload School Logo</label>
+        <input type="file" id="logoUpload" accept="image/*">
 
-      <div class="field">
-        <label>RECIPIENT'S NAME</label>
-        <input id="recipient" value="Student's Name">
-      </div>
+        <label>Certificate Heading</label>
+        <select id="heading">
+          <option>CERTIFICATE OF RECOGNITION</option>
+          <option>CERTIFICATE OF ACHIEVEMENT</option>
+          <option>CERTIFICATE OF GRADUATION</option>
+          <option>CERTIFICATE OF COMPLETION</option>
+          <option>CERTIFICATE OF PARTICIPATION</option>
+          <option>CERTIFICATE OF APPRECIATION</option>
+          <option>CERTIFICATE OF HONOR</option>
+        </select>
 
-      <div class="field">
-        <label>GRADE / PROGRAM</label>
-        <input id="program" value="Senior High School Graduate">
-      </div>
+        <label>Recipient Name</label>
+        <input id="recipient" value="Student's Full Name">
 
-      <div class="field">
-        <label>ACHIEVEMENT / DESCRIPTION</label>
-        <textarea id="description" rows="3">In recognition of outstanding dedication, commitment, and successful completion of the requirements.</textarea>
-      </div>
+        <label>Award / Recognition</label>
+        <input id="award" value="Outstanding Academic Achievement">
 
-      <div class="field">
-        <label>YEAR</label>
-        <input id="year" value="2026">
-      </div>
+        <label>Grade / Program</label>
+        <input id="grade" value="Grade 12">
 
-      <div class="field">
-        <label>DATE</label>
-        <input id="date" value="November 2026">
-      </div>
+        <label>School Year</label>
+        <input id="year" value="2026 – 2027">
 
-      <div class="field">
-        <label>FIRST SIGNATORY</label>
+        <label>Date</label>
+        <input id="date" value="November 11, 2026">
+
+        <label>Certificate Description</label>
+        <input id="description" value="In recognition of dedication, commitment, and outstanding performance.">
+
+        <label>First Signatory</label>
         <input id="sign1" value="School Principal">
-      </div>
 
-      <div class="field">
-        <label>FIRST POSITION</label>
-        <input id="position1" value="School Principal">
-      </div>
+        <label>First Position</label>
+        <input id="pos1" value="School Principal">
 
-      <div class="field">
-        <label>SECOND SIGNATORY</label>
-        <input id="sign2" value="Academic Coordinator">
-      </div>
+        <label>Second Signatory</label>
+        <input id="sign2" value="Class Adviser">
 
-      <div class="field">
-        <label>SECOND POSITION</label>
-        <input id="position2" value="Academic Coordinator">
-      </div>
-    </aside>
+        <label>Second Position</label>
+        <input id="pos2" value="Class Adviser">
 
-    <section class="preview-area">
+        <div class="button-row">
+          <button class="primary" onclick="updateCertificate()">Update Preview</button>
+          <button class="gold-btn" onclick="window.print()">Print / Save PDF</button>
+        </div>
+      </section>
 
+      <section class="panel">
+        <h2>Design Settings</h2>
+
+        <label>Certificate Category</label>
+        <select id="categoryFilter" onchange="renderGallery()">
+          <option value="All">All Categories</option>
+          <option>Graduation</option>
+          <option>Simple Awards</option>
+          <option>Academic Honors</option>
+          <option>Participation</option>
+          <option>Completion</option>
+          <option>Special Recognition</option>
+        </select>
+
+        <label>Color Theme</label>
+        <select id="themeFilter" onchange="renderGallery()">
+          <option value="All">All Color Themes</option>
+          <option value="navy">Royal Navy & Gold</option>
+          <option value="classic">Classic Gold</option>
+          <option value="blue">Royal Blue & Silver</option>
+          <option value="burgundy">Burgundy & Gold</option>
+          <option value="black">Black & Gold</option>
+          <option value="emerald">Emerald & Gold</option>
+        </select>
+
+        <label>Decoration</label>
+        <div class="button-row">
+          <button class="secondary" onclick="toggleDecoration('no-seal')">Seal On / Off</button>
+          <button class="secondary" onclick="toggleDecoration('no-ribbon')">Ribbon On / Off</button>
+        </div>
+        <div class="button-row">
+          <button class="secondary" onclick="toggleDecoration('no-side')">Side Ornaments</button>
+          <button class="secondary" onclick="toggleDecoration('no-corners')">Corner Ornaments</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="preview-area">
       <div class="preview-top">
-        <h3>Certificate Gallery</h3>
-        <span id="selectedName" class="count">Design 001</span>
+        <div>
+          <h2 style="margin:0">Live Certificate Preview</h2>
+          <small id="selectedName">Design 01</small>
+        </div>
+        <button class="gold-btn" onclick="window.print()">Print Certificate</button>
       </div>
 
-      <div id="gallery" class="gallery"></div>
-      <p class="count" id="count"></p>
+      <div class="certificate theme-navy layout-1" id="certificate">
+        <div class="inner-border"></div>
+        <div class="corner tl">❦</div>
+        <div class="corner tr">❦</div>
+        <div class="corner bl">❦</div>
+        <div class="corner br">❦</div>
+        <div class="side-ornament left-ornament">✦ ❧ ✦ ❧ ✦</div>
+        <div class="side-ornament right-ornament">✦ ❧ ✦ ❧ ✦</div>
+        <div class="ribbon">SPECIAL RECOGNITION</div>
 
-      <div class="preview-top" style="margin-top:28px">
-        <h3>Live Certificate Preview</h3>
-      </div>
+        <img class="cert-logo" id="certLogo" alt="School Logo">
 
-      <div class="certificate-wrap">
-        <div class="certificate" id="certificate">
-          <svg id="art" viewBox="0 0 1200 849" preserveAspectRatio="none"></svg>
+        <div class="cert-school" id="pSchool">YOUR SCHOOL NAME</div>
+        <div class="cert-location" id="pLocation">Your School Location</div>
+        <div class="cert-divider">❧ ✦ ❧</div>
 
-          <div class="cert-content">
-            <div class="school" id="outSchool"></div>
-            <div class="location" id="outLocation"></div>
-            <div class="small-rule"></div>
-            <div class="heading" id="outHeading"></div>
-            <div class="awarded">THIS CERTIFICATE IS AWARDED TO</div>
-            <div class="recipient" id="outRecipient"></div>
-            <div class="program" id="outProgram"></div>
-            <div class="description" id="outDescription"></div>
-            <div class="year" id="outYear"></div>
+        <div class="cert-heading" id="pHeading">CERTIFICATE OF RECOGNITION</div>
+        <div class="cert-subheading">A Mark of Excellence and Achievement</div>
 
-            <div class="signatures">
-              <div class="signature">
-                <strong id="outSign1"></strong>
-                <span id="outPosition1"></span>
-              </div>
-              <div class="signature">
-                <strong id="outSign2"></strong>
-                <span id="outPosition2"></span>
-              </div>
-            </div>
+        <div class="awarded">THIS CERTIFICATE IS AWARDED TO</div>
+        <div class="cert-recipient" id="pRecipient">Student's Full Name</div>
+
+        <div class="cert-description" id="pDescription">
+          In recognition of dedication, commitment, and outstanding performance.
+        </div>
+
+        <div class="cert-award" id="pAward">Outstanding Academic Achievement</div>
+        <div class="cert-grade" id="pGrade">Grade 12</div>
+        <div class="cert-year" id="pYear">2026 – 2027</div>
+        <div class="cert-date" id="pDate">November 11, 2026</div>
+
+        <div class="seal">✦<br>HONOR</div>
+
+        <div class="cert-bottom">
+          <div class="signature">
+            <div class="signature-line"></div>
+            <strong id="pSign1">School Principal</strong>
+            <small id="pPos1">School Principal</small>
           </div>
-
-          <div class="seal-text">ACADEMIC<br>EXCELLENCE</div>
+          <div class="signature">
+            <div class="signature-line"></div>
+            <strong id="pSign2">Class Adviser</strong>
+            <small id="pPos2">Class Adviser</small>
+          </div>
         </div>
       </div>
 
-      <div class="buttons">
-        <button class="primary" onclick="window.print()">PRINT / SAVE PDF</button>
-        <button class="secondary" onclick="downloadSVG()">DOWNLOAD DESIGN</button>
-      </div>
-
-    </section>
+      <section class="panel gallery-panel" style="margin-top:25px">
+        <div class="gallery-heading">
+          <h2>Certificate Design Gallery</h2>
+          <small id="designCount">100 designs</small>
+        </div>
+        <p style="font-size:12px;color:#777">
+          Choose a design to apply it to your certificate.
+        </p>
+        <div class="gallery" id="gallery"></div>
+      </section>
+    </div>
   </div>
 </main>
 
+<footer>
+  PRESTIGE CERTIFICATE STUDIO • Designed for elegant and professional certificates
+</footer>
+
 <script>
-const palettes = [
-  {name:"Royal Navy & Gold",bg:"#102344",paper:"#fffdf7",gold:"#c8a45d",ink:"#102344",dark:true},
-  {name:"Classic Gold",bg:"#e8d4a6",paper:"#fffaf0",gold:"#a77c30",ink:"#4b3820"},
-  {name:"Royal Blue & Silver",bg:"#142d55",paper:"#fbfcff",gold:"#9baec9",ink:"#142d55",dark:true},
-  {name:"Burgundy & Gold",bg:"#651e31",paper:"#fffaf6",gold:"#cba15b",ink:"#651e31",dark:true},
-  {name:"Black & Gold",bg:"#171717",paper:"#fffdf5",gold:"#c9a34c",ink:"#171717",dark:true},
-  {name:"Emerald & Gold",bg:"#124c3b",paper:"#fffdf4",gold:"#c8a45d",ink:"#124c3b",dark:true}
+const themes = [
+  {id:"navy",name:"Royal Navy & Gold"},
+  {id:"classic",name:"Classic Gold"},
+  {id:"blue",name:"Royal Blue & Silver"},
+  {id:"burgundy",name:"Burgundy & Gold"},
+  {id:"black",name:"Black & Gold"},
+  {id:"emerald",name:"Emerald & Gold"}
 ];
 
 const categories = [
-  "Graduation","Simple Awards","Academic Honors",
-  "Participation","Completion","Special Recognition"
+  "Graduation",
+  "Simple Awards",
+  "Academic Honors",
+  "Participation",
+  "Completion",
+  "Special Recognition"
 ];
 
-const titles = {
-  "Graduation":"Certificate of Graduation",
-  "Simple Awards":"Certificate of Recognition",
-  "Academic Honors":"Certificate of Academic Excellence",
-  "Participation":"Certificate of Participation",
-  "Completion":"Certificate of Completion",
-  "Special Recognition":"Special Recognition Award"
-};
+const ornaments = [
+  "❦","✥","✧","❧","✺","❋","✣","✤","✦","❖"
+];
 
 const layouts = [
-  "Classic University","Royal Diploma","Floral Elegance",
-  "Laurel Prestige","Grand Medallion","Imperial Scroll",
-  "Academic Heritage","Ornate Corners","Double Royal Frame",
-  "Distinguished Honor"
+  "Classic Double Frame",
+  "Royal Engraved Frame",
+  "Heritage Ridge Frame",
+  "Floral Rounded Frame",
+  "Imperial Triple Frame",
+  "Grand Diploma Frame",
+  "Regal Grooved Frame",
+  "Elegant Dotted Frame",
+  "Classic Ornate Frame",
+  "Prestige Double-Line Frame"
 ];
 
-let designs = [];
-let selected = 0;
+const designs = [];
 
 for(let i=0;i<100;i++){
+  const theme = themes[i % 6];
+  const layout = i % 10;
+  const category = categories[Math.floor(i/17)] || "Special Recognition";
+
   designs.push({
     id:i+1,
-    category:categories[Math.floor(i/17)] || categories[5],
-    theme:palettes[i%6].name,
-    layout:i%10,
-    variation:Math.floor(i/10)
+    theme:theme.id,
+    themeName:theme.name,
+    layout:layout+1,
+    layoutName:layouts[layout],
+    category:category,
+    ornament:ornaments[i%10]
   });
 }
 
-function esc(s){
-  return String(s).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",
-    '"':"&quot;","'":"&#39;"
-  }[c]));
+let currentDesign = designs[0];
+let logoData = "";
+
+function miniPreview(d){
+  return `
+    <div class="mini" style="
+      --gold:${getGold(d.theme)};
+      --dark:${getDark(d.theme)};
+      border-style:${["double","ridge","groove","solid","outset"][d.layout%5]};
+      border-width:${3+(d.layout%4)}px;">
+      <div class="mini-seal">✦</div>
+      <em>${d.themeName.toUpperCase()}</em>
+      <span>CERTIFICATE</span>
+      <b>${d.ornament} ${d.category} ${d.ornament}</b>
+      <em>${d.layoutName}</em>
+    </div>`;
 }
 
-function ornament(x,y,scale,color,flip=false){
-  return `<g transform="translate(${x} ${y}) scale(${flip?-scale:scale},${scale})" fill="none" stroke="${color}" stroke-width="3">
-    <path d="M0 0 C35 -55 85 -55 95 -5 C105 40 60 55 40 25 C20 5 42 -22 62 -8"/>
-    <path d="M5 5 C-5 45 15 72 48 75 C75 78 93 57 95 35"/>
-    <path d="M26 20 Q-2 -15 22 -32 Q48 -20 26 20Z"/>
-    <path d="M53 3 Q35 -38 66 -48 Q85 -20 53 3Z"/>
-    <path d="M62 45 Q45 12 77 9 Q96 34 62 45Z"/>
-    <circle cx="0" cy="0" r="7" fill="${color}"/>
-  </g>`;
+function getGold(theme){
+  return {
+    navy:"#c5a04d",
+    classic:"#aa8538",
+    blue:"#aabbd1",
+    burgundy:"#c4a15c",
+    black:"#c6a04b",
+    emerald:"#c5a65c"
+  }[theme];
 }
 
-function laurel(x,y,scale,color,flip=false){
-  return `<g transform="translate(${x} ${y}) scale(${flip?-scale:scale},${scale})" fill="none" stroke="${color}" stroke-width="3">
-    <path d="M0 0 Q-40 -70 0 -150"/>
-    ${Array.from({length:7},(_,i)=>{
-      let yy=-12-i*19;
-      return `<path d="M-3 ${yy} Q-35 ${yy-28} -28 ${yy-42} Q-5 ${yy-39} -3 ${yy}Z"/>`;
-    }).join("")}
-  </g>`;
-}
-
-function seal(cx,cy,r,color){
-  return `<g transform="translate(${cx} ${cy})">
-    <circle r="${r}" fill="none" stroke="${color}" stroke-width="5"/>
-    <circle r="${r-11}" fill="none" stroke="${color}" stroke-width="2"/>
-    <circle r="${r-19}" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="5 5"/>
-    <path d="M0 ${-r+17} L${r*.25} ${-r*.25} L${r*.75} 0 L${r*.25} ${r*.25} L0 ${r-17} L${-r*.25} ${r*.25} L${-r*.75} 0 L${-r*.25} ${-r*.25}Z" fill="${color}" opacity=".13"/>
-    <path d="M0 -35 L9 -10 L35 -10 L14 7 L22 32 L0 17 L-22 32 L-14 7 L-35 -10 L-9 -10Z" fill="${color}"/>
-  </g>`;
-}
-
-function frameSVG(d,small=false){
-  const p=palettes.find(x=>x.name===d.theme)||palettes[0];
-  const gold=p.gold;
-  const bg=p.paper;
-  const n=d.layout;
-  const v=d.variation;
-  let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 849">
-  <rect width="1200" height="849" fill="${bg}"/>`;
-
-  // Background watermark
-  s+=`<circle cx="600" cy="424" r="280" fill="none" stroke="${gold}" stroke-width="1" opacity=".09"/>
-      <circle cx="600" cy="424" r="250" fill="none" stroke="${gold}" stroke-width="1" opacity=".09"/>`;
-
-  // Different border families
-  if(n===0){
-    s+=`<rect x="35" y="35" width="1130" height="779" fill="none" stroke="${gold}" stroke-width="9"/>
-        <rect x="52" y="52" width="1096" height="745" fill="none" stroke="${gold}" stroke-width="2"/>
-        <rect x="67" y="67" width="1066" height="715" fill="none" stroke="${gold}" stroke-width="1"/>`;
-  }
-  if(n===1){
-    s+=`<rect x="25" y="25" width="1150" height="799" fill="none" stroke="${gold}" stroke-width="3"/>
-        <rect x="43" y="43" width="1114" height="763" fill="none" stroke="${gold}" stroke-width="7"/>
-        <rect x="58" y="58" width="1084" height="733" fill="none" stroke="${gold}" stroke-width="1"/>`;
-  }
-  if(n===2){
-    s+=`<rect x="35" y="35" width="1130" height="779" fill="none" stroke="${gold}" stroke-width="2"/>
-        <rect x="50" y="50" width="1100" height="749" fill="none" stroke="${gold}" stroke-width="2" stroke-dasharray="5 7"/>`;
-  }
-  if(n===3){
-    s+=`<rect x="38" y="38" width="1124" height="773" fill="none" stroke="${gold}" stroke-width="4"/>
-        <path d="M80 110 H1120 M80 739 H1120" stroke="${gold}" stroke-width="3"/>
-        ${laurel(125,670,.9,gold)} ${laurel(1075,670,.9,gold,true)}`;
-  }
-  if(n===4){
-    s+=`<rect x="25" y="25" width="1150" height="799" fill="none" stroke="${gold}" stroke-width="3"/>
-        <path d="M60 100 Q600 10 1140 100 M60 749 Q600 839 1140 749" fill="none" stroke="${gold}" stroke-width="4"/>`;
-    s+=seal(600,100,38,gold);
-  }
-  if(n===5){
-    s+=`<rect x="40" y="40" width="1120" height="769" fill="none" stroke="${gold}" stroke-width="3"/>
-        <path d="M60 60 L1140 789 M1140 60 L60 789" stroke="${gold}" stroke-width="1" opacity=".14"/>`;
-  }
-  if(n===6){
-    s+=`<rect x="30" y="30" width="1140" height="789" fill="none" stroke="${gold}" stroke-width="8"/>
-        <rect x="50" y="50" width="1100" height="749" fill="none" stroke="${gold}" stroke-width="1"/>
-        <path d="M600 30 V95 M600 754 V819" stroke="${gold}" stroke-width="3"/>`;
-  }
-  if(n===7){
-    s+=`<rect x="35" y="35" width="1130" height="779" fill="none" stroke="${gold}" stroke-width="2"/>
-        <path d="M35 170 Q180 170 180 35 M1020 35 Q1020 170 1165 170 M35 680 Q180 680 180 814 M1020 814 Q1020 680 1165 680" fill="none" stroke="${gold}" stroke-width="7"/>`;
-  }
-  if(n===8){
-    s+=`<rect x="28" y="28" width="1144" height="793" fill="none" stroke="${gold}" stroke-width="3"/>
-        <rect x="45" y="45" width="1110" height="759" fill="none" stroke="${gold}" stroke-width="3"/>
-        <rect x="62" y="62" width="1076" height="725" fill="none" stroke="${gold}" stroke-width="1"/>`;
-  }
-  if(n===9){
-    s+=`<rect x="45" y="35" width="1110" height="779" fill="none" stroke="${gold}" stroke-width="5"/>
-        <path d="M45 180 H1155 M45 670 H1155" stroke="${gold}" stroke-width="2"/>`;
-    s+=seal(600,180,31,gold);
-  }
-
-  // Decorative corners: size and position vary
-  let size=[.85,1,1.1,.75,1.25][v%5];
-  s+=ornament(65,70,size,gold);
-  s+=ornament(1135,70,size,gold,true);
-  s+=ornament(65,779,size,gold,false);
-  s+=ornament(1135,779,size,gold,true);
-
-  // Additional corner flourishes
-  if(v%2===0){
-    s+=`<path d="M85 85 Q160 130 85 205 M1115 85 Q1040 130 1115 205 M85 764 Q160 719 85 644 M1115 764 Q1040 719 1115 644" fill="none" stroke="${gold}" stroke-width="2"/>`;
-  }
-
-  // Distinct layout ornaments
-  if(n===1 || n===4 || n===9){
-    s+=seal(600,690,48,gold);
-  }
-  if(n===3 || n===6){
-    s+=laurel(340,675,.7,gold);
-    s+=laurel(860,675,.7,gold,true);
-  }
-  if(n===2 || n===7){
-    s+=`<path d="M360 730 Q600 680 840 730 M390 746 Q600 706 810 746" fill="none" stroke="${gold}" stroke-width="2"/>`;
-  }
-  if(n===5){
-    s+=`<path d="M460 100 H740 M460 749 H740" stroke="${gold}" stroke-width="4"/>
-        <path d="M600 88 l15 15 -15 15 -15 -15Z M600 730 l15 15 -15 15 -15 -15Z" fill="${gold}"/>`;
-  }
-
-  // Variation-specific decorations
-  if(v%3===0){
-    s+=`<path d="M300 120 H470 M730 120 H900 M300 729 H470 M730 729 H900" stroke="${gold}" stroke-width="2"/>`;
-  } else if(v%3===1){
-    s+=`<circle cx="600" cy="115" r="14" fill="none" stroke="${gold}" stroke-width="3"/>
-        <circle cx="600" cy="734" r="14" fill="none" stroke="${gold}" stroke-width="3"/>`;
-  } else {
-    s+=`<path d="M580 110 L600 90 L620 110 L600 130Z M580 739 L600 719 L620 739 L600 759Z" fill="none" stroke="${gold}" stroke-width="3"/>`;
-  }
-
-  s+=`</svg>`;
-  return s;
-}
-
-function miniSVG(d){
-  return frameSVG(d,true).replace(
-    'viewBox="0 0 1200 849"',
-    'viewBox="0 0 1200 849"'
-  );
+function getDark(theme){
+  return {
+    navy:"#10213c",
+    classic:"#463416",
+    blue:"#17365b",
+    burgundy:"#681f32",
+    black:"#171717",
+    emerald:"#145341"
+  }[theme];
 }
 
 function renderGallery(){
-  const cat=document.getElementById("category").value;
-  const theme=document.getElementById("theme").value;
+  const category = document.getElementById("categoryFilter").value;
+  const theme = document.getElementById("themeFilter").value;
 
-  const filtered=designs.filter(d=>
-    (cat==="All" || d.category===cat) &&
+  const filtered = designs.filter(d =>
+    (category==="All" || d.category===category) &&
     (theme==="All" || d.theme===theme)
   );
 
-  document.getElementById("count").textContent =
-    `${filtered.length} designs available`;
+  document.getElementById("designCount").textContent =
+    filtered.length + " designs";
 
-  document.getElementById("gallery").innerHTML=filtered.map(d=>`
-    <button class="design-card ${d.id===designs[selected].id?'active':''}"
-      onclick="chooseDesign(${d.id-1})">
-      ${miniSVG(d)}
-      <span>DESIGN ${String(d.id).padStart(3,"0")}</span>
-      <span>${d.layout+1}. ${layouts[d.layout]}</span>
-      <span>${d.theme}</span>
-    </button>
-  `).join("");
+  document.getElementById("gallery").innerHTML =
+    filtered.map(d=>`
+      <button class="design-card ${currentDesign.id===d.id?"selected":""}"
+        onclick="chooseDesign(${d.id})">
+        ${miniPreview(d)}
+        <small>Design ${String(d.id).padStart(2,"0")}</small>
+        <small style="font-weight:400;color:#777">
+          ${d.category} • ${d.themeName}
+        </small>
+      </button>
+    `).join("");
 }
 
-function chooseDesign(index){
-  selected=index;
-  const d=designs[index];
-  const p=palettes.find(x=>x.name===d.theme);
+function chooseDesign(id){
+  currentDesign = designs.find(d=>d.id===id);
+  const cert = document.getElementById("certificate");
 
-  document.getElementById("art").innerHTML=frameSVG(d)
-    .replace(/<svg[^>]*>/,"")
-    .replace("</svg>","");
-
-  const cert=document.getElementById("certificate");
-  cert.style.setProperty("--gold",p.gold);
-  cert.style.setProperty("--navy",p.ink);
-  cert.style.setProperty("--paper",p.paper);
-  cert.style.background=p.paper;
-  cert.style.color=p.ink;
+  cert.className = `certificate theme-${currentDesign.theme} layout-${currentDesign.layout}`;
 
   document.getElementById("selectedName").textContent =
-    `Design ${String(d.id).padStart(3,"0")} — ${layouts[d.layout]}`;
+    `Design ${String(id).padStart(2,"0")} — ${currentDesign.layoutName}`;
 
   renderGallery();
 }
 
-const fields={
-  school:"outSchool",
-  location:"outLocation",
-  heading:"outHeading",
-  recipient:"outRecipient",
-  program:"outProgram",
-  description:"outDescription",
-  year:"outYear",
-  sign1:"outSign1",
-  position1:"outPosition1",
-  sign2:"outSign2",
-  position2:"outPosition2"
-};
+function updateCertificate(){
+  const fields = {
+    school:"pSchool",
+    location:"pLocation",
+    heading:"pHeading",
+    recipient:"pRecipient",
+    description:"pDescription",
+    award:"pAward",
+    grade:"pGrade",
+    year:"pYear",
+    date:"pDate",
+    sign1:"pSign1",
+    pos1:"pPos1",
+    sign2:"pSign2",
+    pos2:"pPos2"
+  };
 
-function updatePreview(){
-  for(const [input,output] of Object.entries(fields)){
-    document.getElementById(output).textContent =
-      document.getElementById(input).value;
+  for(const [inputId,previewId] of Object.entries(fields)){
+    const value = document.getElementById(inputId).value.trim();
+    document.getElementById(previewId).textContent = value;
   }
 }
 
-Object.keys(fields).forEach(id=>{
-  document.getElementById(id).addEventListener("input",updatePreview);
-});
-
-document.getElementById("category").addEventListener("change",()=>{
-  const cat=document.getElementById("category").value;
-  if(cat!=="All"){
-    document.getElementById("heading").value=titles[cat];
-    updatePreview();
-  }
-  renderGallery();
-});
-
-document.getElementById("theme").addEventListener("change",renderGallery);
-
-function downloadSVG(){
-  const svg=document.getElementById("art").innerHTML;
-  const full=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 849">${svg}</svg>`;
-  const blob=new Blob([full],{type:"image/svg+xml"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download="certificate-frame.svg";
-  a.click();
-  URL.revokeObjectURL(url);
+function toggleDecoration(className){
+  document.getElementById("certificate").classList.toggle(className);
 }
 
-updatePreview();
-chooseDesign(0);
+document.getElementById("logoUpload").addEventListener("change",function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+
+  if(!file.type.startsWith("image/")){
+    alert("Please choose an image file.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(event){
+    logoData = event.target.result;
+    const logo = document.getElementById("certLogo");
+    logo.src = logoData;
+    logo.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+document.querySelectorAll(".editor-panel input, .editor-panel select")
+  .forEach(element=>{
+    element.addEventListener("input",updateCertificate);
+    element.addEventListener("change",updateCertificate);
+  });
+
+renderGallery();
+updateCertificate();
 </script>
 
 </body>
