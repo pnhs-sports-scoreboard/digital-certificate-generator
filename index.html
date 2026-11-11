@@ -1,177 +1,271 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Certificate Generator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Certificate Designer</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      padding: 15px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #244b3c;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-    }
-
-    input, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px;
-      margin: 8px 0 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      background: #246b50;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      margin: 5px 0;
-      width: 100%;
-      font-size: 16px;
-    }
-
-    .certificate {
-      background: #fffdf2;
-      border: 8px double #b28b37;
-      padding: 20px 10px;
-      margin-top: 25px;
-      text-align: center;
-    }
-
-    .certificate h2 {
-      color: #a47a25;
-    }
-
-    #recipient {
-      font-family: Georgia, serif;
-      font-size: 27px;
-      overflow-wrap: anywhere;
-    }
-
-    @media print {
-      @page {
-        size: landscape;
-        margin: 10mm;
-      }
-
-      body * {
-        visibility: hidden;
-      }
-
-      #certificate, #certificate * {
-        visibility: visible;
-      }
-
-      #certificate {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f3f1f8;
+ color:#29243b;
+}
+header{
+ background:#302052;
+ color:white;
+ text-align:center;
+ padding:30px 15px;
+}
+header h1{margin:0 0 10px}
+header p{margin:0;color:#ddd4ef}
+main{max-width:1100px;margin:25px auto;padding:15px}
+.panel{
+ background:white;
+ padding:22px;
+ border-radius:14px;
+ margin-bottom:20px;
+ box-shadow:0 3px 12px #00000010;
+}
+h2{color:#39265d;margin-top:0}
+label{display:block;font-weight:bold;margin:14px 0 6px}
+input,textarea,select{
+ width:100%;
+ padding:12px;
+ border:1px solid #ccc;
+ border-radius:8px;
+ font-size:15px;
+}
+textarea{min-height:75px}
+button{
+ background:#6746a5;
+ color:white;
+ border:0;
+ padding:12px 17px;
+ border-radius:8px;
+ cursor:pointer;
+ margin:5px 3px;
+ font-weight:bold;
+}
+button:hover{background:#493078}
+.templates{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+ gap:8px;
+}
+.templates button{min-height:55px}
+#certificate{
+ width:850px;
+ height:570px;
+ margin:10px auto;
+ padding:30px;
+ background:white;
+ border:12px double #b58b32;
+ color:#302052;
+ text-align:center;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+.inner{
+ width:100%;
+ height:100%;
+ border:2px solid #b58b32;
+ padding:35px 20px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+}
+#certificate h2{
+ font-size:40px;
+ letter-spacing:3px;
+ margin:10px 0;
+ color:inherit;
+}
+#certificate h3{
+ font-family:Georgia,serif;
+ font-size:29px;
+ margin:15px 0;
+}
+#recipient{
+ font-family:Georgia,serif;
+ font-size:35px;
+ border-bottom:2px solid currentColor;
+ padding:10px 30px;
+ min-width:300px;
+ overflow-wrap:anywhere;
+}
+#certDescription{
+ max-width:650px;
+ font-size:17px;
+ line-height:1.5;
+}
+#certDate{margin-top:20px}
+#certPresenter{margin-top:18px;font-weight:bold}
+.preview-scroll{overflow-x:auto}
+footer{text-align:center;color:#777;padding:20px}
+@media(max-width:600px){
+ main{padding:10px}
+ .panel{padding:15px}
+}
+</style>
 </head>
 
 <body>
 
-  <h1>Digital Certificate Generator</h1>
+<header>
+<h1>🏆 Online Certificate Designer</h1>
+<p>Create your own beautiful certificates for free!</p>
+</header>
 
-  <div class="container">
+<main>
 
-    <h3>Enter Certificate Information</h3>
+<section class="panel">
+<h2>1. Choose a Certificate Template</h2>
+<div class="templates">
+<button onclick="template('gold')">🏆 Gold Classic</button>
+<button onclick="template('blue')">💙 Blue Honor</button>
+<button onclick="template('pink')">🌸 Pink Elegant</button>
+<button onclick="template('green')">🌿 Green Nature</button>
+<button onclick="template('black')">🖤 Black Luxury</button>
+</div>
+</section>
 
-    <label>Recipient's Name</label>
-    <input id="name" placeholder="Enter full name">
+<section class="panel">
+<h2>2. Enter Certificate Details</h2>
 
-    <label>Award Title</label>
-    <input id="award" placeholder="Certificate of Achievement">
+<label>Recipient Name</label>
+<input id="name" placeholder="Enter recipient name" oninput="update()">
 
-    <label>Description</label>
-    <textarea id="description"
-      placeholder="For outstanding performance..."></textarea>
+<label>Award Title</label>
+<input id="award" value="CERTIFICATE OF ACHIEVEMENT" oninput="update()">
 
-    <label>Date</label>
-    <input id="date" type="date">
+<label>Description</label>
+<textarea id="description" oninput="update()">This certificate is proudly presented in recognition of your hard work and outstanding achievement.</textarea>
 
-    <label>School or Organization</label>
-    <input id="school" placeholder="Enter school name">
+<label>Presented By</label>
+<input id="presenter" placeholder="Enter school or organization" oninput="update()">
 
-    <button onclick="generateCertificate()">
-      Generate Certificate
-    </button>
+<label>Date</label>
+<input id="date" type="date" oninput="update()">
 
-    <div class="certificate" id="certificate">
+<label>Background Color</label>
+<input type="color" id="bg" value="#ffffff" oninput="customize()">
 
-      <h2 id="displayAward">
-        CERTIFICATE OF ACHIEVEMENT
-      </h2>
+<label>Text Color</label>
+<input type="color" id="tc" value="#302052" oninput="customize()">
 
-      <p>This certificate is proudly presented to</p>
+<label>Border Color</label>
+<input type="color" id="bc" value="#b58b32" oninput="customize()">
 
-      <h2 id="recipient">Recipient Name</h2>
+<button onclick="update()">Update Certificate</button>
+</section>
 
-      <p id="displayDescription">
-        For outstanding performance and dedication.
-      </p>
+<section class="panel">
+<h2>3. Live Certificate Preview</h2>
+<div class="preview-scroll">
+<div id="certificate">
+<div class="inner" id="inner">
+<h2 id="certAward">CERTIFICATE OF ACHIEVEMENT</h2>
+<p>THIS CERTIFICATE IS PROUDLY PRESENTED TO</p>
+<h3 id="recipient">Recipient Name</h3>
+<p id="certDescription">This certificate is proudly presented in recognition of your hard work and outstanding achievement.</p>
+<p id="certDate">Date: __________</p>
+<p id="certPresenter">Presented by: __________</p>
+</div>
+</div>
+</div>
 
-      <p id="displaySchool">
-        School or Organization
-      </p>
+<button onclick="downloadPDF()">⬇ Download as PDF</button>
+<button onclick="window.print()">🖨 Print Certificate</button>
+</section>
 
-      <p>Date: <span id="displayDate">__________</span></p>
+</main>
 
-      <br>
-      <p>________________________</p>
-      <p>Authorized Signature</p>
+<footer>
+<p>Online Certificate Designer | Create • Customize • Download</p>
+</footer>
 
-    </div>
+<script>
+function template(type){
+ const styles={
+ gold:{bg:"#fffdf5",tc:"#493514",bc:"#bd9238"},
+ blue:{bg:"#f4f9ff",tc:"#173c70",bc:"#3676b9"},
+ pink:{bg:"#fff5fa",tc:"#813d65",bc:"#d58bad"},
+ green:{bg:"#f5fff5",tc:"#245331",bc:"#65a875"},
+ black:{bg:"#242424",tc:"#ffffff",bc:"#d4af37"}
+ };
+ const s=styles[type];
+ document.getElementById("bg").value=s.bg;
+ document.getElementById("tc").value=s.tc;
+ document.getElementById("bc").value=s.bc;
+ customize();
+}
 
-    <button onclick="window.print()">
-      Print / Save as PDF
-    </button>
+function update(){
+ document.getElementById("recipient").textContent=
+ document.getElementById("name").value.trim() || "Recipient Name";
 
-  </div>
+ document.getElementById("certAward").textContent=
+ document.getElementById("award").value || "CERTIFICATE OF ACHIEVEMENT";
 
-  <script>
-    function generateCertificate() {
+ document.getElementById("certDescription").textContent=
+ document.getElementById("description").value;
 
-      const name = document.getElementById("name").value.trim();
-      const award = document.getElementById("award").value.trim();
-      const description = document.getElementById("description").value.trim();
-      const date = document.getElementById("date").value;
-      const school = document.getElementById("school").value.trim();
+ document.getElementById("certPresenter").textContent=
+ "Presented by: " + (document.getElementById("presenter").value || "__________");
 
-      if (!name || !award || !description || !date || !school) {
-        alert("Please complete all the fields!");
-        return;
-      }
+ const date=document.getElementById("date").value;
+ document.getElementById("certDate").textContent=
+ "Date: " + (date || "__________");
+}
 
-      document.getElementById("recipient").textContent = name;
-      document.getElementById("displayAward").textContent = award;
-      document.getElementById("displayDescription").textContent = description;
-      document.getElementById("displayDate").textContent = date;
-      document.getElementById("displaySchool").textContent = school;
-    }
-  </script>
+function customize(){
+ const cert=document.getElementById("certificate");
+ const inner=document.getElementById("inner");
+ cert.style.background=document.getElementById("bg").value;
+ cert.style.color=document.getElementById("tc").value;
+ cert.style.borderColor=document.getElementById("bc").value;
+ inner.style.borderColor=document.getElementById("bc").value;
+ update();
+}
+
+function downloadPDF(){
+ window.print();
+}
+
+window.onload=function(){
+ template("gold");
+ update();
+};
+</script>
+
+<style>
+@media print{
+ @page{size:landscape;margin:0}
+ body{background:white}
+ header,footer,main>.panel:not(:last-child),
+ .panel h2,.panel button{display:none!important}
+ main{margin:0;padding:0;max-width:none}
+ .panel{padding:0;margin:0;box-shadow:none}
+ .preview-scroll{overflow:visible}
+ #certificate{
+  width:100%;
+  height:100vh;
+  margin:0;
+  border:12px double var(--border-color,#b58b32);
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+ }
+ .inner{
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+ }
+}
+</style>
 
 </body>
 </html>
