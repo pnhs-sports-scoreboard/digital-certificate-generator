@@ -3,113 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Certificate Designer</title>
+<title>Elite Certificate Designer</title>
 
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f3f1f8;
- color:#29243b;
-}
-header{
- background:#302052;
- color:white;
- text-align:center;
- padding:30px 15px;
-}
-header h1{margin:0 0 10px}
-header p{margin:0;color:#ddd4ef}
-main{max-width:1100px;margin:25px auto;padding:15px}
-.panel{
- background:white;
- padding:22px;
- border-radius:14px;
- margin-bottom:20px;
- box-shadow:0 3px 12px #00000010;
-}
-h2{color:#39265d;margin-top:0}
-label{display:block;font-weight:bold;margin:14px 0 6px}
-input,textarea,select{
- width:100%;
- padding:12px;
- border:1px solid #ccc;
- border-radius:8px;
- font-size:15px;
-}
-textarea{min-height:75px}
-button{
- background:#6746a5;
- color:white;
- border:0;
- padding:12px 17px;
- border-radius:8px;
- cursor:pointer;
- margin:5px 3px;
- font-weight:bold;
-}
-button:hover{background:#493078}
-.templates{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
- gap:8px;
-}
-.templates button{min-height:55px}
-#certificate{
- width:850px;
- height:570px;
- margin:10px auto;
- padding:30px;
- background:white;
- border:12px double #b58b32;
- color:#302052;
- text-align:center;
- display:flex;
- align-items:center;
- justify-content:center;
-}
-.inner{
- width:100%;
- height:100%;
- border:2px solid #b58b32;
- padding:35px 20px;
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
-}
-#certificate h2{
- font-size:40px;
- letter-spacing:3px;
- margin:10px 0;
- color:inherit;
-}
-#certificate h3{
- font-family:Georgia,serif;
- font-size:29px;
- margin:15px 0;
-}
-#recipient{
- font-family:Georgia,serif;
- font-size:35px;
- border-bottom:2px solid currentColor;
- padding:10px 30px;
- min-width:300px;
- overflow-wrap:anywhere;
-}
-#certDescription{
- max-width:650px;
- font-size:17px;
- line-height:1.5;
-}
-#certDate{margin-top:20px}
-#certPresenter{margin-top:18px;font-weight:bold}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f3f7;color:#253047}
+header{background:#142c50;color:white;text-align:center;padding:35px 15px}
+header h1{font-family:Georgia,serif;margin:0 0 10px}
+header p{color:#dce4ef}
+main{max-width:1150px;margin:auto;padding:18px}
+.panel{background:white;padding:22px;border-radius:12px;margin-bottom:20px;box-shadow:0 3px 12px #0001}
+h2{font-family:Georgia,serif;color:#19375f}
+label{display:block;font-weight:bold;margin-top:14px}
+input,textarea{width:100%;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:7px;font-size:15px}
+textarea{min-height:80px}
+button{background:#244a7d;color:white;border:0;padding:11px 16px;border-radius:7px;cursor:pointer;font-weight:bold}
+button:hover{background:#142d50}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:13px}
+.design-card{border:2px solid #ddd;border-radius:9px;padding:8px;background:white;cursor:pointer;text-align:center}
+.design-card.selected{border:3px solid #27804c;background:#f0fff5}
+.mini{height:105px;padding:7px;background:var(--paper);border:8px var(--style) var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;position:relative}
+.mini-inner{height:100%;width:100%;border:1px solid var(--gold);display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:Georgia,serif}
+.mini-inner b{font-size:10px}
+.mini-inner span{font-size:8px;margin-top:5px}
+.mini:before{content:var(--orn);position:absolute;top:1px;left:4px;color:var(--gold)}
+.design-card p{font-size:12px;font-weight:bold;margin:8px 0}
+.design-card small{font-size:10px;color:#666}
+.design-card button{width:100%;margin-top:8px;padding:8px;font-size:11px}
+#selectedName{color:#27804c;font-weight:bold}
 .preview-scroll{overflow-x:auto}
-footer{text-align:center;color:#777;padding:20px}
-@media(max-width:600px){
- main{padding:10px}
- .panel{padding:15px}
+#certificate{
+ width:850px;height:570px;margin:15px auto;padding:24px;
+ background:var(--paper);border:12px var(--style) var(--gold);
+ color:var(--ink);position:relative;text-align:center;
+}
+#certificate:before,#certificate:after{
+ content:var(--orn);position:absolute;color:var(--gold);font-size:30px
+}
+#certificate:before{top:8px;left:15px}
+#certificate:after{bottom:8px;right:15px}
+.cert-inner{
+ height:100%;border:2px solid var(--gold);
+ padding:30px 25px;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;position:relative
+}
+.school{font-size:18px;font-weight:bold;letter-spacing:2px}
+.location{font-size:12px;margin-top:5px}
+.cert-title{font-family:Georgia,serif;font-size:35px;margin:23px 0 10px}
+.subheading{font-size:13px;letter-spacing:2px}
+.recipient{font-family:Georgia,serif;font-size:34px;font-style:italic;border-bottom:2px solid var(--gold);padding:9px 25px;min-width:300px;overflow-wrap:anywhere}
+.award{font-family:Georgia,serif;font-size:21px;font-weight:bold;margin:13px}
+.description{font-size:15px;line-height:1.5;max-width:650px}
+.cert-date{font-size:14px;margin-top:17px}
+.signatures{display:flex;justify-content:space-around;gap:35px;width:100%;margin-top:32px}
+.signature{width:190px;border-top:1px solid var(--ink);padding-top:7px;font-size:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+footer{text-align:center;padding:20px;color:#777}
+@media(max-width:600px){main{padding:9px}.panel{padding:14px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{
+ @page{size:landscape;margin:0}
+ body{background:white}
+ header,footer,main>.panel:not(#previewPanel){display:none!important}
+ main{padding:0;margin:0;max-width:none}
+ #previewPanel{padding:0;margin:0;box-shadow:none}
+ #previewPanel h2,.actions{display:none!important}
+ .preview-scroll{overflow:visible}
+ #certificate{width:100%;height:100vh;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
@@ -117,155 +77,231 @@ footer{text-align:center;color:#777;padding:20px}
 <body>
 
 <header>
-<h1>🏆 Online Certificate Designer</h1>
-<p>Create your own beautiful certificates for free!</p>
+<h1>Elite Certificate Designer</h1>
+<p>Professional Graduation, Recognition and Academic Awards</p>
 </header>
 
 <main>
 
 <section class="panel">
-<h2>1. Choose a Certificate Template</h2>
-<div class="templates">
-<button onclick="template('gold')">🏆 Gold Classic</button>
-<button onclick="template('blue')">💙 Blue Honor</button>
-<button onclick="template('pink')">🌸 Pink Elegant</button>
-<button onclick="template('green')">🌿 Green Nature</button>
-<button onclick="template('black')">🖤 Black Luxury</button>
+<h2>01. Select Your Certificate Frame</h2>
+<p>Choose from 100 professional certificate frame designs.</p>
+
+<div class="filters">
+<button onclick="filter('all')">All 100 Designs</button>
+<button onclick="filter('graduation')">Graduation</button>
+<button onclick="filter('honors')">With Honors</button>
+<button onclick="filter('recognition')">Recognition</button>
+<button onclick="filter('academic')">Academic Excellence</button>
+<button onclick="filter('special')">Special Awards</button>
 </div>
+
+<div class="gallery" id="gallery"></div>
 </section>
 
 <section class="panel">
-<h2>2. Enter Certificate Details</h2>
+<h2>02. Certificate Information</h2>
 
-<label>Recipient Name</label>
-<input id="name" placeholder="Enter recipient name" oninput="update()">
+<label>School / Organization Name</label>
+<input id="school" placeholder="Enter school name" oninput="update()">
 
-<label>Award Title</label>
-<input id="award" value="CERTIFICATE OF ACHIEVEMENT" oninput="update()">
+<label>School Address</label>
+<input id="location" placeholder="Enter school address" oninput="update()">
 
-<label>Description</label>
-<textarea id="description" oninput="update()">This certificate is proudly presented in recognition of your hard work and outstanding achievement.</textarea>
+<label>Recipient's Full Name</label>
+<input id="name" placeholder="Enter recipient's name" oninput="update()">
 
-<label>Presented By</label>
-<input id="presenter" placeholder="Enter school or organization" oninput="update()">
+<label>Certificate Title</label>
+<input id="title" value="CERTIFICATE OF RECOGNITION" oninput="update()">
+
+<label>Award / Achievement</label>
+<input id="award" placeholder="Example: With High Honors" oninput="update()">
+
+<label>Certificate Description</label>
+<textarea id="description" oninput="update()">In recognition of outstanding academic performance, dedication, and commitment to excellence.</textarea>
 
 <label>Date</label>
 <input id="date" type="date" oninput="update()">
 
+<label>First Signatory</label>
+<input id="sign1" placeholder="Name" oninput="update()">
+<input id="position1" placeholder="Position / Title" oninput="update()">
+
+<label>Second Signatory</label>
+<input id="sign2" placeholder="Name" oninput="update()">
+<input id="position2" placeholder="Position / Title" oninput="update()">
+
 <label>Background Color</label>
-<input type="color" id="bg" value="#ffffff" oninput="customize()">
+<input type="color" id="bg" value="#fffdf7" oninput="customize()">
 
 <label>Text Color</label>
-<input type="color" id="tc" value="#302052" oninput="customize()">
+<input type="color" id="tc" value="#17365c" oninput="customize()">
 
-<label>Border Color</label>
-<input type="color" id="bc" value="#b58b32" oninput="customize()">
+<label>Frame Color</label>
+<input type="color" id="bc" value="#bd923c" oninput="customize()">
 
-<button onclick="update()">Update Certificate</button>
 </section>
 
-<section class="panel">
-<h2>3. Live Certificate Preview</h2>
+<section class="panel" id="previewPanel">
+<h2>03. Live Certificate Preview</h2>
+<p>Selected: <span id="selectedName">Design 1</span></p>
+
 <div class="preview-scroll">
 <div id="certificate">
-<div class="inner" id="inner">
-<h2 id="certAward">CERTIFICATE OF ACHIEVEMENT</h2>
-<p>THIS CERTIFICATE IS PROUDLY PRESENTED TO</p>
-<h3 id="recipient">Recipient Name</h3>
-<p id="certDescription">This certificate is proudly presented in recognition of your hard work and outstanding achievement.</p>
-<p id="certDate">Date: __________</p>
-<p id="certPresenter">Presented by: __________</p>
+<div class="cert-inner">
+<div class="school" id="outSchool">SCHOOL NAME</div>
+<div class="location" id="outLocation">School Address</div>
+<div class="cert-title" id="outTitle">CERTIFICATE OF RECOGNITION</div>
+<div class="subheading">THIS CERTIFICATE IS AWARDED TO</div>
+<div class="recipient" id="outName">Recipient Name</div>
+<div class="award" id="outAward"></div>
+<p class="description" id="outDescription">In recognition of outstanding academic performance, dedication, and commitment to excellence.</p>
+<div class="cert-date" id="outDate"></div>
+<div class="signatures">
+<div class="signature">
+<strong id="outSign1">Authorized Signatory</strong>
+<div id="outPosition1">School Official</div>
+</div>
+<div class="signature">
+<strong id="outSign2">Authorized Signatory</strong>
+<div id="outPosition2">School Official</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 
-<button onclick="downloadPDF()">⬇ Download as PDF</button>
-<button onclick="window.print()">🖨 Print Certificate</button>
+<div class="actions">
+<button onclick="window.print()">Download / Save as PDF</button>
+<button onclick="resetForm()">Clear Information</button>
+</div>
 </section>
 
 </main>
 
-<footer>
-<p>Online Certificate Designer | Create • Customize • Download</p>
-</footer>
+<footer>Elite Certificate Designer | Professional Academic Awards</footer>
 
 <script>
-function template(type){
- const styles={
- gold:{bg:"#fffdf5",tc:"#493514",bc:"#bd9238"},
- blue:{bg:"#f4f9ff",tc:"#173c70",bc:"#3676b9"},
- pink:{bg:"#fff5fa",tc:"#813d65",bc:"#d58bad"},
- green:{bg:"#f5fff5",tc:"#245331",bc:"#65a875"},
- black:{bg:"#242424",tc:"#ffffff",bc:"#d4af37"}
- };
- const s=styles[type];
- document.getElementById("bg").value=s.bg;
- document.getElementById("tc").value=s.tc;
- document.getElementById("bc").value=s.bc;
- customize();
+const palettes=[
+{name:"Navy Gold",paper:"#fffdf7",ink:"#183353",gold:"#bd923c"},
+{name:"Royal Blue Silver",paper:"#ffffff",ink:"#183b70",gold:"#9aaec9"},
+{name:"Classic Gold",paper:"#fffaf0",ink:"#59421c",gold:"#c49b48"},
+{name:"Royal Blue",paper:"#f8fbff",ink:"#143e83",gold:"#2863ad"},
+{name:"Emerald Gold",paper:"#fbfff9",ink:"#24513c",gold:"#bd9846"},
+{name:"Black Gold",paper:"#fffdf7",ink:"#252525",gold:"#c4a04b"},
+{name:"Burgundy Gold",paper:"#fffafa",ink:"#702e3e",gold:"#c19a53"},
+{name:"Forest Silver",paper:"#fbfff9",ink:"#244b3c",gold:"#9ba99f"},
+{name:"Midnight Blue",paper:"#f8faff",ink:"#182b50",gold:"#a8bce0"},
+{name:"Teal Gold",paper:"#f8ffff",ink:"#14535b",gold:"#c6a34d"}
+];
+
+const borders=["double","solid","groove","ridge","inset","outset","dashed","double","ridge","groove"];
+const ornaments=["✦","❖","✧","❦","♛","✺","✥","❋","✵","◆"];
+
+const categories=["graduation","honors","recognition","academic","special"];
+const designs=[];
+
+for(let i=0;i<100;i++){
+ let p=palettes[Math.floor(i/10)];
+ let j=i%10;
+ designs.push({
+  id:i,
+  name:p.name+" Frame "+(j+1),
+  paper:p.paper,
+  ink:p.ink,
+  gold:p.gold,
+  border:borders[j],
+  ornament:ornaments[j],
+  category:categories[Math.floor(i/20)]
+ });
+}
+
+let selected=0;
+let activeFilter="all";
+
+function style(d){
+ return `--paper:${d.paper};--ink:${d.ink};--gold:${d.gold};--style:${d.border};--orn:'${d.ornament}'`;
+}
+
+function render(){
+ let gallery=document.getElementById("gallery");
+ gallery.innerHTML="";
+ let list=designs.filter(d=>activeFilter==="all"||d.category===activeFilter);
+
+ list.forEach(d=>{
+  let card=document.createElement("div");
+  card.className="design-card"+(selected===d.id?" selected":"");
+  card.innerHTML=`
+  <div class="mini" style="${style(d)}">
+   <div class="mini-inner">
+    <b>CERTIFICATE</b>
+    <span>OF RECOGNITION</span>
+    <span>Presented to</span>
+   </div>
+  </div>
+  <p>Frame ${d.id+1}</p>
+  <small>${d.name}</small>
+  <button type="button">Choose Frame</button>`;
+  card.onclick=()=>choose(d.id);
+  gallery.appendChild(card);
+ });
+}
+
+function choose(id){
+ selected=id;
+ let d=designs[id];
+ document.getElementById("certificate").setAttribute("style",style(d));
+ document.getElementById("selectedName").textContent="Frame "+(id+1)+" - "+d.name;
+ document.getElementById("bg").value=d.paper;
+ document.getElementById("tc").value=d.ink;
+ document.getElementById("bc").value=d.gold;
+ render();
+}
+
+function filter(category){
+ activeFilter=category;
+ render();
 }
 
 function update(){
- document.getElementById("recipient").textContent=
- document.getElementById("name").value.trim() || "Recipient Name";
-
- document.getElementById("certAward").textContent=
- document.getElementById("award").value || "CERTIFICATE OF ACHIEVEMENT";
-
- document.getElementById("certDescription").textContent=
- document.getElementById("description").value;
-
- document.getElementById("certPresenter").textContent=
- "Presented by: " + (document.getElementById("presenter").value || "__________");
-
- const date=document.getElementById("date").value;
- document.getElementById("certDate").textContent=
- "Date: " + (date || "__________");
+ const values={
+  outSchool:document.getElementById("school").value||"SCHOOL NAME",
+  outLocation:document.getElementById("location").value||"School Address",
+  outTitle:document.getElementById("title").value||"CERTIFICATE OF RECOGNITION",
+  outName:document.getElementById("name").value||"Recipient Name",
+  outAward:document.getElementById("award").value,
+  outDescription:document.getElementById("description").value,
+  outDate:document.getElementById("date").value,
+  outSign1:document.getElementById("sign1").value||"Authorized Signatory",
+  outPosition1:document.getElementById("position1").value||"School Official",
+  outSign2:document.getElementById("sign2").value||"Authorized Signatory",
+  outPosition2:document.getElementById("position2").value||"School Official"
+ };
+ Object.entries(values).forEach(([id,value])=>{
+  document.getElementById(id).textContent=value;
+ });
 }
 
 function customize(){
- const cert=document.getElementById("certificate");
- const inner=document.getElementById("inner");
- cert.style.background=document.getElementById("bg").value;
- cert.style.color=document.getElementById("tc").value;
- cert.style.borderColor=document.getElementById("bc").value;
- inner.style.borderColor=document.getElementById("bc").value;
+ let cert=document.getElementById("certificate");
+ cert.style.setProperty("--paper",document.getElementById("bg").value);
+ cert.style.setProperty("--ink",document.getElementById("tc").value);
+ cert.style.setProperty("--gold",document.getElementById("bc").value);
+}
+
+function resetForm(){
+ ["school","location","name","award","date","sign1","position1","sign2","position2"].forEach(id=>{
+  document.getElementById(id).value="";
+ });
+ document.getElementById("title").value="CERTIFICATE OF RECOGNITION";
+ document.getElementById("description").value="In recognition of outstanding academic performance, dedication, and commitment to excellence.";
  update();
 }
 
-function downloadPDF(){
- window.print();
-}
-
-window.onload=function(){
- template("gold");
- update();
-};
+render();
+choose(0);
+update();
 </script>
-
-<style>
-@media print{
- @page{size:landscape;margin:0}
- body{background:white}
- header,footer,main>.panel:not(:last-child),
- .panel h2,.panel button{display:none!important}
- main{margin:0;padding:0;max-width:none}
- .panel{padding:0;margin:0;box-shadow:none}
- .preview-scroll{overflow:visible}
- #certificate{
-  width:100%;
-  height:100vh;
-  margin:0;
-  border:12px double var(--border-color,#b58b32);
-  -webkit-print-color-adjust:exact;
-  print-color-adjust:exact;
- }
- .inner{
-  -webkit-print-color-adjust:exact;
-  print-color-adjust:exact;
- }
-}
-</style>
 
 </body>
 </html>
